@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
     <title>280 Days Project | Training Plan</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -476,13 +479,35 @@
         }
 
         /* Mobile Responsive */
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
         @media (max-width: 768px) {
+            .two-col-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        @media (max-width: 768px) {
+            /* Layout */
             .container {
                 grid-template-columns: 1fr;
+                padding-top: 64px;
+            }
+
+            /* Header */
+            .header {
+                padding: var(--spacing-sm) var(--spacing-md);
             }
 
             .header-content {
                 padding: 0;
+            }
+
+            .logo {
+                font-size: 16px;
             }
 
             .stats-bar {
@@ -491,39 +516,293 @@
 
             .menu-toggle {
                 display: block;
+                font-size: 10px;
+                padding: 6px 12px;
             }
 
+            /* Sidebar — slides in from left as drawer */
             .sidebar {
                 position: fixed;
-                top: 80px;
+                top: 64px;
                 left: -100%;
-                width: 280px;
+                width: 85vw;
+                max-width: 320px;
+                height: calc(100vh - 64px);
                 transition: left 0.3s ease;
-                box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+                box-shadow: 4px 0 16px rgba(0,0,0,0.2);
+                z-index: 901;
             }
 
             .sidebar.open {
                 left: 0;
             }
 
+            /* Main content */
             .main-content {
-                padding: var(--spacing-lg);
+                padding: var(--spacing-md);
+                max-width: 100%;
+                overflow-x: hidden;
             }
 
+            /* Search */
+            .search-container {
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .search-input {
+                font-size: 14px;
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+
+            /* Typography */
             h1 {
-                font-size: 32px;
+                font-size: 28px;
+                letter-spacing: -0.5px;
             }
 
             h2 {
+                font-size: 20px;
+                margin-top: var(--spacing-xl);
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            li {
+                font-size: 13px;
+            }
+
+            /* Cards */
+            .card {
+                padding: var(--spacing-md);
+            }
+
+            /* Grids → single column on mobile */
+            .week-schedule {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-sm);
+            }
+
+            /* All 2-col grids → stack */
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                display: block !important;
+            }
+
+            div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Tables — make scrollable horizontally */
+            table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+
+            th, td {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            /* Week selector buttons — wrap nicely */
+            .week-selector {
+                gap: var(--spacing-xs);
+            }
+
+            .week-btn {
+                min-width: 60px;
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+
+            /* Checklist items — more touch-friendly */
+            .checklist-item {
+                padding: var(--spacing-sm) 0;
+                align-items: flex-start;
+            }
+
+            .checkbox {
+                width: 24px;
+                height: 24px;
+                min-width: 24px;
+                margin-top: 2px;
+            }
+
+            /* Info boxes */
+            .info-box {
+                padding: var(--spacing-md);
+            }
+
+            /* Progress bar */
+            .progress-container {
+                margin: var(--spacing-md) 0;
+            }
+
+            /* Quick links */
+            .quick-link {
+                padding: var(--spacing-md);
+                font-size: 12px;
+            }
+
+            /* Day cards in today's workout */
+            .day-card {
+                padding: var(--spacing-sm);
+            }
+
+            .day-title {
+                font-size: 14px;
+            }
+
+            .day-detail {
+                font-size: 12px;
+            }
+
+            /* Workout detail cards */
+            .workout-detail-header {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .workout-detail-day {
+                font-size: 16px;
+            }
+
+            .workout-detail-body {
+                padding: var(--spacing-md);
+            }
+
+            /* 75-day challenge grid — 15 cols is too tight on iPhone, use 10 */
+            #challengeGrid {
+                grid-template-columns: repeat(10, 1fr) !important;
+                gap: 3px;
+            }
+
+            /* Today's workout phase/week selectors */
+            #phaseSelect, #weekSelect {
+                font-size: 12px;
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+
+            /* Race week buttons — wrap */
+            #races .week-selector {
+                flex-direction: column;
+            }
+
+            #races .week-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            /* Big day number in challenge tracker */
+            #challengeDayNum {
+                font-size: 52px !important;
+            }
+
+            /* Input fields */
+            input[type="number"], input[type="text"], input[type="time"], select {
+                font-size: 16px !important; /* Prevents iOS zoom on focus */
+            }
+
+            /* Buttons — bigger tap targets */
+            button {
+                min-height: 44px;
+            }
+
+            /* Inline grids inside cards */
+            .card div[style*="grid-template-columns"] {
+                display: block !important;
+            }
+
+            /* Weight tracker inputs */
+            #weightWeek, #weightValue, #waistValue {
+                width: 100% !important;
+            }
+
+            /* Wrap strengths/weaknesses grid */
+            div[style*="grid-template-columns: 1fr 1fr"] > .card {
+                margin-bottom: var(--spacing-md);
+            }
+
+            /* Checklist count banner */
+            #checklistProgress {
+                font-size: 15px;
+                padding: var(--spacing-md);
+            }
+
+            /* Social media table wrap */
+            #social-media table {
+                font-size: 11px;
+            }
+
+            /* Meal rotation tables */
+            #mealWeekDetails table {
+                white-space: normal;
+            }
+
+            #mealWeekDetails td {
+                font-size: 12px;
+                vertical-align: top;
+            }
+
+            /* Challenge tracker stat cards */
+            #challenge-tracker > div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* Run time log grid */
+            #runTimeHistory table {
+                font-size: 11px;
+            }
+
+            /* Canvas for weight chart */
+            #weightCanvas {
+                max-width: 100%;
+                height: auto !important;
+            }
+
+            /* Daily reset banner */
+            .daily-reset-banner {
+                font-size: 10px;
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+        }
+
+        /* iPhone SE and very small screens */
+        @media (max-width: 375px) {
+            h1 {
                 font-size: 24px;
             }
 
-            .week-schedule {
-                grid-template-columns: 1fr;
+            .logo {
+                font-size: 14px;
             }
 
-            .card {
-                padding: var(--spacing-md);
+            #challengeGrid {
+                grid-template-columns: repeat(8, 1fr) !important;
+            }
+
+            .week-btn {
+                min-width: 48px;
+                font-size: 10px;
+            }
+        }
+
+        /* Safe area for iPhone notch / home bar */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .sidebar {
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+            .main-content {
+                padding-bottom: calc(var(--spacing-xl) + env(safe-area-inset-bottom));
             }
         }
 
@@ -870,7 +1149,7 @@
                     <p style="margin: 0;">Select your current phase and week below to see today's detailed workout breakdown.</p>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin: var(--spacing-lg) 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin: var(--spacing-lg) 0;" class="two-col-grid">
                     <div>
                         <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--spacing-sm);">Current Phase:</label>
                         <select id="phaseSelect" style="width: 100%; padding: var(--spacing-sm); border: 2px solid var(--black); font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600;">
