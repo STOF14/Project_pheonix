@@ -1039,6 +1039,105 @@
         .mb-xl {
             margin-bottom: var(--spacing-xl);
         }
+
+        .today-toolbar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .summary-strip {
+            border: 2px solid var(--black);
+            background: var(--gray-100);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .summary-strip strong {
+            color: var(--red);
+        }
+
+        .progress-wrap {
+            margin: var(--spacing-sm) 0 var(--spacing-lg) 0;
+        }
+
+        .progress-meter {
+            width: 100%;
+            height: 10px;
+            background: var(--gray-200);
+            border: 1px solid var(--black);
+            position: relative;
+        }
+
+        .progress-fill {
+            background: var(--red);
+            height: 100%;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .today-sticky-bar {
+            position: sticky;
+            top: 68px;
+            z-index: 20;
+            background: var(--white);
+            border: 2px solid var(--black);
+            padding: var(--spacing-sm) var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .complete-toggle {
+            margin-top: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .update-toast {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 999;
+            background: var(--black);
+            color: var(--white);
+            border: 2px solid var(--red);
+            padding: var(--spacing-md);
+            max-width: 320px;
+            display: none;
+        }
+
+        .update-toast button {
+            margin-top: var(--spacing-sm);
+            width: 100%;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .today-toolbar {
+                grid-template-columns: 1fr;
+            }
+
+            .today-sticky-bar {
+                top: 56px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1174,6 +1273,7 @@
             <section id="todays-workout" class="content-section">
                 <h1>TODAY'S WORKOUT</h1>
                 <p class="text-mono" style="font-size: 16px;" id="todayDate"></p>
+                <div class="today-sticky-bar" id="todayStickyBar">WEEK CONTEXT: PHASE 1 • WEEK 1</div>
                 <div class="info-box">
                     <div class="info-box-title">Quick View</div>
                     <p style="margin: 0;">Select your current phase and week below to see today's detailed workout breakdown from the markdown plan.</p>
@@ -1206,6 +1306,32 @@
                             <option value="12">Week 12</option>
                         </select>
                     </div>
+                </div>
+                <div class="today-toolbar">
+                    <div class="card" style="margin: 0;">
+                        <label style="display:block; font-size:11px; font-weight:700; text-transform:uppercase; margin-bottom:var(--spacing-xs);">Training State</label>
+                        <select id="trainingState" style="width:100%; padding: var(--spacing-sm); border: 2px solid var(--black); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600;">
+                            <option value="on-plan">On Plan</option>
+                            <option value="catch-up">Catch-up</option>
+                            <option value="deload">Deload</option>
+                        </select>
+                        <label class="complete-toggle"><input type="checkbox" id="todayModeToggle">Today Mode (single day focus)</label>
+                    </div>
+                    <div class="card" style="margin: 0;">
+                        <div style="font-size:11px; font-weight:700; text-transform:uppercase; margin-bottom:var(--spacing-xs);">Fatigue Guardrail</div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+                            <input id="sleepHours" type="number" min="0" max="12" step="0.5" placeholder="Sleep h" style="padding: var(--spacing-xs); border: 2px solid var(--black);">
+                            <input id="sorenessScore" type="number" min="0" max="10" step="1" placeholder="Soreness" style="padding: var(--spacing-xs); border: 2px solid var(--black);">
+                            <input id="stressScore" type="number" min="0" max="10" step="1" placeholder="Stress" style="padding: var(--spacing-xs); border: 2px solid var(--black);">
+                        </div>
+                        <button id="checkFatigueBtn" class="quick-link" style="margin-top: var(--spacing-sm); width:100%;">Check Risk</button>
+                        <div id="fatigueAdvice" class="text-mono" style="font-size:12px; margin-top: var(--spacing-xs);"></div>
+                    </div>
+                </div>
+                <div class="summary-strip" id="weeklySummaryStrip">WEEK SUMMARY: loading...</div>
+                <div class="progress-wrap">
+                    <div class="text-mono" id="completionLabel" style="font-size:12px; margin-bottom: 6px;">Week Completion: 0/7</div>
+                    <div class="progress-meter"><div class="progress-fill" id="weekCompletionFill"></div></div>
                 </div>
                 <button class="quick-link" id="loadWorkoutBtn" style="width: 100%; background: var(--black); color: var(--white); padding: var(--spacing-md); font-size: 14px;">
                     LOAD TODAY'S WORKOUT
@@ -1644,6 +1770,45 @@
                     <button class="week-btn" onclick="showWeekDetails(10)">Week 10</button>
                     <button class="week-btn" onclick="showWeekDetails(11)">Week 11</button>
                     <button class="week-btn" onclick="showWeekDetails(12)">Week 12</button>
+                </div>
+
+                <div class="card" id="phase1CatchupBridge" style="border-left: 4px solid var(--red); display: none;">
+                    <div class="card-header">
+                        <div class="card-title">Catch-Up Long Run Bridge</div>
+                        <div class="card-badge">OPTIONAL</div>
+                    </div>
+                    <p style="margin-bottom: var(--spacing-sm);">Use this if early long runs were missed. Next long run is <strong>Week 4: 6km easy</strong>. Do not try to make up missed runs in one week.</p>
+                    <table style="margin: 0;">
+                        <thead>
+                            <tr>
+                                <th>Calendar Week</th>
+                                <th>Saturday Long Run</th>
+                                <th>Guidance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Week 4</td>
+                                <td><strong>6km</strong></td>
+                                <td>Easy conversational pace</td>
+                            </tr>
+                            <tr>
+                                <td>Week 5</td>
+                                <td><strong>7km</strong></td>
+                                <td>Stay controlled, no racing</td>
+                            </tr>
+                            <tr>
+                                <td>Week 6</td>
+                                <td><strong>8km</strong></td>
+                                <td>Back to confidence volume</td>
+                            </tr>
+                            <tr>
+                                <td>Week 7+</td>
+                                <td><strong>Resume plan</strong></td>
+                                <td>Continue normal progression</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Week Details Container -->
@@ -5819,9 +5984,22 @@
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('sw.js').then(function(reg) {
                     console.log('280 Days SW registered:', reg.scope);
+                    reg.addEventListener('updatefound', function() {
+                        const worker = reg.installing;
+                        if (!worker) return;
+                        worker.addEventListener('statechange', function() {
+                            if (worker.state === 'installed' && navigator.serviceWorker.controller && typeof window.showUpdateToast === 'function') {
+                                window.showUpdateToast();
+                            }
+                        });
+                    });
                 }).catch(function(err) {
                     console.log('SW registration failed:', err);
                 });
+            });
+
+            navigator.serviceWorker.addEventListener('controllerchange', function() {
+                window.location.reload();
             });
         }
     </script>
@@ -5834,6 +6012,241 @@ const PHASE_CONFIG = {
     '06_Phase4_Peak.md': { minWeek: 37, maxWeek: 41 },
     '07_Phase5_Taper_and_RaceDay.md': { minWeek: 42, maxWeek: 44 }
 };
+
+const markdownCache = new Map();
+const weekSectionCache = new Map();
+const completionStorageKey = 'weekCompletionV1';
+
+let currentPhaseFile = '03_Phase1_Foundation.md';
+let currentWeekNum = 1;
+
+function getCompletionMap() {
+    try {
+        return JSON.parse(localStorage.getItem(completionStorageKey) || '{}');
+    } catch (e) {
+        return {};
+    }
+}
+
+function setCompletionMap(data) {
+    localStorage.setItem(completionStorageKey, JSON.stringify(data));
+}
+
+function completionKey(phaseFile, weekNum, dayName) {
+    return `${phaseFile}|${weekNum}|${String(dayName || '').toLowerCase()}`;
+}
+
+function isDayCompleted(phaseFile, weekNum, dayName) {
+    const map = getCompletionMap();
+    return !!map[completionKey(phaseFile, weekNum, dayName)];
+}
+
+function setDayCompleted(phaseFile, weekNum, dayName, completed) {
+    const map = getCompletionMap();
+    const key = completionKey(phaseFile, weekNum, dayName);
+    if (completed) map[key] = true;
+    else delete map[key];
+    setCompletionMap(map);
+}
+
+function updateStickyBar() {
+    const bar = document.getElementById('todayStickyBar');
+    if (!bar) return;
+    const label = weekTitleForPhase(currentPhaseFile, currentWeekNum).toUpperCase();
+    bar.textContent = `WEEK CONTEXT: ${label}`;
+}
+
+function getTodayModeEnabled() {
+    const el = document.getElementById('todayModeToggle');
+    return !!(el && el.checked);
+}
+
+function getTrainingState() {
+    const el = document.getElementById('trainingState');
+    return (el && el.value) || 'on-plan';
+}
+
+function applyTrainingStateAdjustments(dayBlocks, state) {
+    if (!Array.isArray(dayBlocks)) return [];
+    return dayBlocks.map(day => {
+        if (!day || !day.markdown) return day;
+        let markdown = day.markdown;
+        if (state === 'catch-up') {
+            markdown += '\n\n- Catch-up focus: keep effort controlled and prioritize consistency over intensity.';
+        }
+        if (state === 'deload') {
+            markdown += '\n\n- Deload override: reduce intensity by 20-30% and keep this session conversational.';
+        }
+        return { ...day, markdown };
+    });
+}
+
+function weekSummaryFromDays(dayBlocks, weekNum) {
+    const structured = dayBlocks.map(day => extractStructuredDay(day, weekNum));
+    const kmValues = structured
+        .map(day => {
+            const m = String(day.distance || '').match(/(\d+(?:\.\d+)?)\s?km/i);
+            return m ? parseFloat(m[1]) : 0;
+        })
+        .filter(v => Number.isFinite(v) && v > 0);
+    const weeklyKm = kmValues.reduce((sum, v) => sum + v, 0);
+    const longRun = kmValues.length ? Math.max(...kmValues) : 0;
+    const keyWorkout = structured.find(day => /tempo|speed|interval|race/i.test(String(day.workout || '')));
+    return {
+        weeklyKm,
+        longRun,
+        keyWorkout: keyWorkout ? `${keyWorkout.day}: ${keyWorkout.workout}` : 'Consistency block',
+        recovery: 'Sleep + hydration + mobility'
+    };
+}
+
+function renderWeeklySummaryStrip(dayBlocks, weekNum) {
+    const el = document.getElementById('weeklySummaryStrip');
+    if (!el) return;
+    const summary = weekSummaryFromDays(dayBlocks, weekNum);
+    el.innerHTML = `
+        WEEK SUMMARY: <strong>${Math.round(summary.weeklyKm)}KM TARGET</strong> •
+        LONG RUN: <strong>${summary.longRun || 0}KM</strong> •
+        KEY: <strong>${summary.keyWorkout.toUpperCase()}</strong> •
+        RECOVERY: <strong>${summary.recovery.toUpperCase()}</strong>
+    `;
+}
+
+function updateCompletionUI(phaseFile, weekNum) {
+    const label = document.getElementById('completionLabel');
+    const fill = document.getElementById('weekCompletionFill');
+    if (!label || !fill) return;
+
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const done = days.filter(day => isDayCompleted(phaseFile, weekNum, day)).length;
+    const pct = Math.round((done / days.length) * 100);
+    label.textContent = `Week Completion: ${done}/7 (${pct}%)`;
+    fill.style.width = `${pct}%`;
+}
+
+function bindCompletionHandlers(container, phaseFile, weekNum) {
+    const toggles = container.querySelectorAll('.day-complete-toggle');
+    toggles.forEach(toggle => {
+        toggle.addEventListener('change', function() {
+            const day = this.getAttribute('data-day');
+            setDayCompleted(phaseFile, weekNum, day, this.checked);
+            updateCompletionUI(phaseFile, weekNum);
+        });
+    });
+}
+
+async function fetchMarkdownCached(phaseFile) {
+    if (markdownCache.has(phaseFile)) return markdownCache.get(phaseFile);
+    const response = await fetch(phaseFile);
+    if (!response.ok) throw new Error('Failed to fetch phase markdown');
+    const markdown = await response.text();
+    markdownCache.set(phaseFile, markdown);
+    return markdown;
+}
+
+function getWeekSectionCached(markdown, phaseFile, weekNum) {
+    const key = `${phaseFile}|${weekNum}`;
+    if (weekSectionCache.has(key)) return weekSectionCache.get(key);
+    const section = extractWeekSection(markdown, phaseFile, weekNum);
+    weekSectionCache.set(key, section);
+    return section;
+}
+
+function renderTodayOnly(dayBlocks, weekNum, todayName) {
+    const todayBlock = dayBlocks.find(day => String(day.day || '').toLowerCase() === String(todayName).toLowerCase());
+    const fallback = todayBlock || dayBlocks[0] || { day: todayName, markdown: `### ${todayName}\n\n- No session listed.` };
+    return renderWeekCards([fallback], {
+        detailed: true,
+        todayName,
+        weekNum,
+        fullWeek: false,
+        phaseFile: currentPhaseFile
+    });
+}
+
+function evaluateFatigueRisk() {
+    const sleep = parseFloat((document.getElementById('sleepHours') || {}).value || '0');
+    const soreness = parseInt((document.getElementById('sorenessScore') || {}).value || '0', 10);
+    const stress = parseInt((document.getElementById('stressScore') || {}).value || '0', 10);
+    const target = document.getElementById('fatigueAdvice');
+    if (!target) return;
+
+    let risk = 0;
+    if (sleep < 6) risk += 2;
+    if (soreness >= 7) risk += 2;
+    if (stress >= 7) risk += 2;
+    if (sleep >= 6 && sleep < 7) risk += 1;
+    if (soreness >= 5 && soreness < 7) risk += 1;
+    if (stress >= 5 && stress < 7) risk += 1;
+
+    if (risk >= 5) {
+        target.textContent = 'High fatigue risk: swap hard session for 30-40 min easy + mobility.';
+        target.style.color = 'var(--red)';
+        return;
+    }
+    if (risk >= 3) {
+        target.textContent = 'Moderate fatigue risk: cut volume 20% and keep effort easy-to-moderate.';
+        target.style.color = 'var(--gray-800)';
+        return;
+    }
+    target.textContent = 'Low fatigue risk: proceed as planned and keep recovery habits tight.';
+    target.style.color = 'var(--gray-800)';
+}
+
+function getActiveWeekFromSection(sectionSelector, fallbackWeek) {
+    const active = document.querySelector(`${sectionSelector} .week-btn.active`);
+    if (!active) return fallbackWeek;
+    const match = active.textContent.match(/Week\s+(\d+)/i);
+    return match ? parseInt(match[1], 10) : fallbackWeek;
+}
+
+function attachSwipeNavigation(containerId, minWeek, maxWeek, onChange, getCurrentWeek) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    let startX = 0;
+    let deltaX = 0;
+    container.addEventListener('touchstart', function(e) {
+        startX = e.changedTouches[0].clientX;
+        deltaX = 0;
+    }, { passive: true });
+    container.addEventListener('touchmove', function(e) {
+        deltaX = e.changedTouches[0].clientX - startX;
+    }, { passive: true });
+    container.addEventListener('touchend', function() {
+        if (Math.abs(deltaX) < 40) return;
+        const baseWeek = typeof getCurrentWeek === 'function' ? getCurrentWeek() : currentWeekNum;
+        let nextWeek = baseWeek;
+        if (deltaX < 0) nextWeek += 1;
+        if (deltaX > 0) nextWeek -= 1;
+        if (nextWeek < minWeek || nextWeek > maxWeek) return;
+        currentWeekNum = nextWeek;
+        onChange(nextWeek);
+    });
+}
+
+function ensureUpdateToast() {
+    let toast = document.getElementById('updateToast');
+    if (toast) return toast;
+    toast = document.createElement('div');
+    toast.id = 'updateToast';
+    toast.className = 'update-toast';
+    toast.innerHTML = '<div class="text-mono" style="font-size:12px;">New plan update is ready.</div><button id="applyUpdateBtn">Refresh App</button>';
+    document.body.appendChild(toast);
+    const btn = document.getElementById('applyUpdateBtn');
+    if (btn) {
+        btn.addEventListener('click', function() {
+            window.location.reload();
+        });
+    }
+    return toast;
+}
+
+function showUpdateToast() {
+    const toast = ensureUpdateToast();
+    toast.style.display = 'block';
+}
+
+window.showUpdateToast = showUpdateToast;
 
 function getSelectedWeek() {
     return parseInt(document.getElementById('weekSelect').value, 10);
@@ -6137,12 +6550,14 @@ function renderWeekCards(dayBlocks, options) {
     const todayName = options.todayName || '';
     const detailed = !!options.detailed;
     const weekNum = options.weekNum || 1;
+    const fullWeek = options.fullWeek !== false;
+    const phaseFile = options.phaseFile || getSelectedPhaseFile();
     const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const structured = dayBlocks.map(day => extractStructuredDay(day, weekNum));
     const byDay = new Map(structured.map(day => [day.day.toLowerCase(), day]));
 
     // Always render a full week so users can see every day even when markdown is sparse.
-    const renderedCards = weekDays.map(dayName => {
+    const renderedCards = (fullWeek ? weekDays : structured.map(day => day.day)).map(dayName => {
         const existing = byDay.get(dayName.toLowerCase());
         if (existing) return existing;
         return {
@@ -6175,6 +6590,7 @@ function renderWeekCards(dayBlocks, options) {
                             <div class="workout-section-title">Workout Details</div>
                             <div>${marked.parse(dayData.fullMarkdown || dayData.markdown || '')}</div>
                         </div>
+                        <label class="complete-toggle"><input class="day-complete-toggle" type="checkbox" data-day="${dayData.day}" ${isDayCompleted(phaseFile, weekNum, dayData.day) ? 'checked' : ''}>Mark ${dayData.day} complete</label>
                     </div>
                 </div>
             `;
@@ -6329,11 +6745,13 @@ async function loadMarkdownWeekInto(containerId, phaseFile, weekNum, includeToda
     const container = document.getElementById(containerId);
     if (!container) return;
 
+    currentPhaseFile = phaseFile;
+    currentWeekNum = weekNum;
+    updateStickyBar();
+
     try {
-        const response = await fetch(phaseFile);
-        if (!response.ok) throw new Error('Failed to fetch phase markdown');
-        const markdown = await response.text();
-        const weekSection = extractWeekSection(markdown, phaseFile, weekNum);
+        const markdown = await fetchMarkdownCached(phaseFile);
+        const weekSection = getWeekSectionCached(markdown, phaseFile, weekNum);
 
         if (!weekSection) {
             container.innerHTML = '<div class="info-box">No matching plan section found for this week.</div>';
@@ -6345,6 +6763,7 @@ async function loadMarkdownWeekInto(containerId, phaseFile, weekNum, includeToda
         if (!dayBlocks.length && phaseFile === '03_Phase1_Foundation.md') {
             dayBlocks = synthesizePhase1Days(weekSection, weekNum);
         }
+        dayBlocks = applyTrainingStateAdjustments(dayBlocks, getTrainingState());
         const title = weekTitleForPhase(phaseFile, weekNum);
         let header = '';
         const dayContext = `<div class="daily-reset-banner">Today is ${todayName.toUpperCase()} - follow the ${todayName.toUpperCase()} block below.</div>`;
@@ -6353,13 +6772,22 @@ async function loadMarkdownWeekInto(containerId, phaseFile, weekNum, includeToda
         }
 
         let bodyHtml = '';
-        bodyHtml = renderWeekCards(dayBlocks, {
-            detailed: true,
-            todayName: todayName,
-            weekNum: weekNum
-        });
+        if (getTodayModeEnabled() && includeTodayHeader) {
+            bodyHtml = renderTodayOnly(dayBlocks, weekNum, todayName);
+        } else {
+            bodyHtml = renderWeekCards(dayBlocks, {
+                detailed: true,
+                todayName: todayName,
+                weekNum: weekNum,
+                fullWeek: true,
+                phaseFile: phaseFile
+            });
+        }
 
         container.innerHTML = `${header}${dayContext}<h2>${title}</h2>${bodyHtml}`;
+        bindCompletionHandlers(container, phaseFile, weekNum);
+        renderWeeklySummaryStrip(dayBlocks, weekNum);
+        updateCompletionUI(phaseFile, weekNum);
     } catch (error) {
         container.innerHTML = '<div class="info-box">Could not load workout plan.</div>';
     }
@@ -6407,26 +6835,40 @@ function showTodaysWorkout() {
 }
 
 function showWeekDetails(weekNum) {
+    currentPhaseFile = '03_Phase1_Foundation.md';
+    currentWeekNum = weekNum;
     setActiveWeekButton('#phase1', weekNum);
+    const bridge = document.getElementById('phase1CatchupBridge');
+    if (bridge) {
+        bridge.style.display = (weekNum >= 4 && weekNum <= 7) ? 'block' : 'none';
+    }
     loadMarkdownWeekInto('weekDetailsContainer', '03_Phase1_Foundation.md', weekNum, false);
 }
 
 function showPhase2Week(weekNum) {
+    currentPhaseFile = '04_Phase2_Speed.md';
+    currentWeekNum = weekNum;
     setActiveWeekButton('#phase2', weekNum);
     loadMarkdownWeekInto('phase2WeekDetails', '04_Phase2_Speed.md', weekNum, false);
 }
 
 function showPhase3Week(weekNum) {
+    currentPhaseFile = '05_Phase3_Build.md';
+    currentWeekNum = weekNum;
     setActiveWeekButton('#phase3', weekNum);
     loadMarkdownWeekInto('phase3WeekDetails', '05_Phase3_Build.md', weekNum, false);
 }
 
 function showPhase4Week(weekNum) {
+    currentPhaseFile = '06_Phase4_Peak.md';
+    currentWeekNum = weekNum;
     setActiveWeekButton('#phase4', weekNum);
     loadMarkdownWeekInto('phase4WeekDetails', '06_Phase4_Peak.md', weekNum, false);
 }
 
 function showPhase5Week(weekNum) {
+    currentPhaseFile = '07_Phase5_Taper_and_RaceDay.md';
+    currentWeekNum = weekNum;
     setActiveWeekButton('#phase5', weekNum);
     loadMarkdownWeekInto('phase5WeekDetails', '07_Phase5_Taper_and_RaceDay.md', weekNum, false);
 }
@@ -6435,6 +6877,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadBtn = document.getElementById('loadWorkoutBtn');
     const phaseSelect = document.getElementById('phaseSelect');
     const weekSelect = document.getElementById('weekSelect');
+    const todayModeToggle = document.getElementById('todayModeToggle');
+    const trainingState = document.getElementById('trainingState');
+    const checkFatigueBtn = document.getElementById('checkFatigueBtn');
 
     if (phaseSelect) {
         phaseSelect.addEventListener('change', function() {
@@ -6448,6 +6893,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (loadBtn) {
         loadBtn.addEventListener('click', loadTodaysWorkout);
     }
+    if (todayModeToggle) {
+        todayModeToggle.addEventListener('change', loadTodaysWorkout);
+    }
+    if (trainingState) {
+        trainingState.addEventListener('change', loadTodaysWorkout);
+    }
+    if (checkFatigueBtn) {
+        checkFatigueBtn.addEventListener('click', evaluateFatigueRisk);
+    }
 
     updateTodayWeekOptions();
 
@@ -6457,6 +6911,12 @@ document.addEventListener('DOMContentLoaded', function() {
     showPhase3Week(21);
     showPhase4Week(37);
     showPhase5Week(42);
+
+    attachSwipeNavigation('weekDetailsContainer', 1, 12, showWeekDetails, function() { return getActiveWeekFromSection('#phase1', 1); });
+    attachSwipeNavigation('phase2WeekDetails', 13, 20, showPhase2Week, function() { return getActiveWeekFromSection('#phase2', 13); });
+    attachSwipeNavigation('phase3WeekDetails', 21, 36, showPhase3Week, function() { return getActiveWeekFromSection('#phase3', 21); });
+    attachSwipeNavigation('phase4WeekDetails', 37, 41, showPhase4Week, function() { return getActiveWeekFromSection('#phase4', 37); });
+    attachSwipeNavigation('phase5WeekDetails', 42, 44, showPhase5Week, function() { return getActiveWeekFromSection('#phase5', 42); });
 });
 </script>
 </html>
