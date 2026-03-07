@@ -13,6 +13,8 @@
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         :root {
             --black: #000000;
@@ -620,12 +622,17 @@
             /* Week selector buttons — wrap nicely */
             .week-selector {
                 gap: var(--spacing-xs);
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
             }
 
             .week-btn {
                 min-width: 60px;
                 padding: 6px 10px;
                 font-size: 11px;
+                flex: 0 0 auto;
             }
 
             /* Checklist items — more touch-friendly */
@@ -682,6 +689,27 @@
 
             .workout-detail-body {
                 padding: var(--spacing-md);
+            }
+
+            .workout-detail-badge {
+                max-width: 100%;
+                white-space: normal;
+                text-align: right;
+                line-height: 1.3;
+            }
+
+            .workout-detail-body table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                white-space: nowrap;
+                margin: var(--spacing-sm) 0;
+            }
+
+            .workout-detail-body p,
+            .workout-detail-body li {
+                font-size: 13px;
             }
 
             /* 75-day challenge grid — 15 cols is too tight on iPhone, use 10 */
@@ -943,6 +971,22 @@
             padding: var(--spacing-lg);
         }
 
+        .workout-detail-body p {
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.7;
+        }
+
+        .workout-detail-body ul,
+        .workout-detail-body ol {
+            margin-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .workout-detail-body li {
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+
         .workout-section {
             margin-bottom: var(--spacing-lg);
             padding-bottom: var(--spacing-lg);
@@ -1042,7 +1086,7 @@
                 <div class="sidebar-title">Navigation</div>
                 <nav>
                     <div class="nav-item" onclick="showSection('todays-workout')">
-                        <span class="nav-number">🔥</span>
+                        <span class="nav-number"></span>
                         <span>Today's Workout</span>
                     </div>
                     <div class="nav-item active" onclick="showSection('overview')">
@@ -1102,7 +1146,7 @@
                         <span>Social Media</span>
                     </div>
                     <div class="nav-item" onclick="showSection('challenge-tracker')">
-                        <span class="nav-number">🏆</span>
+                        <span class="nav-number"></span>
                         <span>75-Day Tracker</span>
                     </div>
                 </nav>
@@ -1126,43 +1170,23 @@
                 <input type="text" class="search-input" placeholder="SEARCH YOUR TRAINING PLAN..." id="searchInput" onkeyup="searchContent()">
             </div>
 
-            <!-- Today's Workout Section -->
+            <!-- Today's Workout Section (Dynamic Markdown) -->
             <section id="todays-workout" class="content-section">
                 <h1>TODAY'S WORKOUT</h1>
                 <p class="text-mono" style="font-size: 16px;" id="todayDate"></p>
-
-                <div class="card" style="background: var(--black); color: var(--white);">
-                    <div class="card-title">Quick Stats</div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--spacing-md);">
-                        <div>
-                            <div style="font-size: 11px; opacity: 0.7;">THIS WEEK</div>
-                            <div style="font-size: 24px; font-weight: 700;" id="thisWeekComplete">0/7</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 11px; opacity: 0.7;">CURRENT STREAK</div>
-                            <div style="font-size: 24px; font-weight: 700;" id="currentStreak">0 days</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 11px; opacity: 0.7;">TOTAL WORKOUTS</div>
-                            <div style="font-size: 24px; font-weight: 700;" id="totalWorkouts">0</div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="info-box">
                     <div class="info-box-title">Quick View</div>
-                    <p style="margin: 0;">Select your current phase and week below to see today's detailed workout breakdown.</p>
+                    <p style="margin: 0;">Select your current phase and week below to see today's detailed workout breakdown from the markdown plan.</p>
                 </div>
-
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin: var(--spacing-lg) 0;" class="two-col-grid">
                     <div>
                         <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--spacing-sm);">Current Phase:</label>
                         <select id="phaseSelect" style="width: 100%; padding: var(--spacing-sm); border: 2px solid var(--black); font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600;">
-                            <option value="phase1">Phase 1: 75 To Runner</option>
-                            <option value="phase2">Phase 2: Speed Intro</option>
-                            <option value="phase3">Phase 3: Build</option>
-                            <option value="phase4">Phase 4: Peak</option>
-                            <option value="phase5">Phase 5: Taper</option>
+                            <option value="03_Phase1_Foundation.md">Phase 1: 75 To Runner</option>
+                            <option value="04_Phase2_Speed.md">Phase 2: Speed Intro</option>
+                            <option value="05_Phase3_Build.md">Phase 3: Build</option>
+                            <option value="06_Phase4_Peak.md">Phase 4: Peak</option>
+                            <option value="07_Phase5_Taper_and_RaceDay.md">Phase 5: Taper</option>
                         </select>
                     </div>
                     <div>
@@ -1183,18 +1207,10 @@
                         </select>
                     </div>
                 </div>
-
-                <button class="quick-link" onclick="loadTodaysWorkout()" style="width: 100%; background: var(--black); color: var(--white); padding: var(--spacing-md); font-size: 14px;">
+                <button class="quick-link" id="loadWorkoutBtn" style="width: 100%; background: var(--black); color: var(--white); padding: var(--spacing-md); font-size: 14px;">
                     LOAD TODAY'S WORKOUT
                 </button>
-
                 <div id="todaysWorkoutContent" style="margin-top: var(--spacing-xl);"></div>
-
-                <div id="workoutCompleteButton" style="display: none; margin-top: var(--spacing-xl);">
-                    <button onclick="markWorkoutComplete()" style="width: 100%; background: var(--red); color: var(--white); border: none; padding: var(--spacing-lg); font-size: 16px; font-weight: 700; text-transform: uppercase; cursor: pointer; letter-spacing: 0.5px;">
-                        MARK TODAY'S WORKOUT COMPLETE
-                    </button>
-                </div>
             </section>
 
             <!-- Overview Section -->
@@ -4716,6 +4732,7 @@
 
         // Week details function for Phase 1
         function showWeekDetails(weekNum) {
+
             const container = document.getElementById('weekDetailsContainer');
             if (!container) return;
 
@@ -4723,201 +4740,30 @@
             document.querySelectorAll('.week-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Week data
-            const weekData = {
-                1: {
-                    monday: { distance: '3km', pace: '7:15-7:30/km', time: '6:00am', 
-                        workout: 'Easy Run + Hamstring Circuit',
-                        details: [
-                            '5min walk cool-down',
-                            'Stretch: Hamstrings, quads, calves, hip flexors (30sec each)',
-                            'Evening 21:00 - Nordic Curls Circuit (20-25min)',
-                            'Warm-up: Leg swings, bodyweight squats, glute bridges',
-                            'Nordic Curls: 3 sets x 3-4 reps (5sec eccentric)',
-                            'Single-Leg RDLs: 3 sets x 8 reps per leg',
-                            'Glute Bridges: 3 sets x 15 reps',
-                            'Plank Hold: 3 sets x 30-45sec',
-                            'Dead Bugs: 3 sets x 12 reps'
-                        ]
-                    },
-                    tuesday: { distance: '30-45min', pace: 'Walk', time: '6:00am',
-                        workout: 'Recovery Walk + Optional Gym',
-                        details: [
-                            'Around campus, Hatfield streets',
-                            'Easy conversational pace (4-5km/hr)',
-                            'Optional Evening 17:30 - Light Strength (30-40min)',
-                            'Warm-up: 500m easy rowing',
-                            'Pull-ups: 3x6-8 (assisted if needed)',
-                            'Dumbbell Bench Press: 3x10',
-                            'Single-Arm Rows: 3x10 per arm',
-                            'Goblet Squats (LIGHT): 3x12',
-                            'Core: Hanging knee raises, pallof press, side planks'
-                        ]
-                    },
-                    wednesday: { distance: '3km', pace: '7:00-7:15/km', time: '5:30am',
-                        workout: 'Easy Run + Strides + Mobility',
-                        details: [
-                            'Then add 4 x 100m strides @ 70% effort',
-                            'Strides: Gradual build, hold 60m, decelerate',
-                            'Walk back recovery (1-2min)',
-                            'Optional Evening 17:45 - Mobility Session (30-40min)',
-                            'Yoga Flow: Sun salutations (5 rounds)',
-                            'Warrior poses, triangle pose, pigeon pose',
-                            'Foam Rolling: Quads, hamstrings, calves, IT band (15min)'
-                        ]
-                    },
-                    thursday: { distance: '30-45min', pace: 'Easy', time: '6:00am',
-                        workout: 'Recovery Walk OR Very Easy Jog',
-                        details: [
-                            'Option A: 45min easy walking pace',
-                            'Option B: 4-5km VERY easy jog (7:00-7:30/km)',
-                            'Choose based on how body feels',
-                            'Should feel absolutely effortless',
-                            'Optional evening: Light bodyweight circuit (20min)'
-                        ]
-                    },
-                    friday: { distance: '3km', pace: '7:15/km', time: '5:30am',
-                        workout: 'Easy Run',
-                        details: [
-                            'Keep it conversational and comfortable',
-                            'Optional Evening - Stretching/mobility (20min)',
-                            'Light core work (planks, dead bugs)',
-                            'Foam rolling'
-                        ]
-                    },
-                    saturday: { distance: '5km', pace: '7:00-7:30/km', time: '7:00am',
-                        workout: '🔥 LONG RUN - MOST IMPORTANT',
-                        details: [
-                            'Go SLOW - conversational pace throughout',
-                            'Walk breaks allowed if needed',
-                            'Eat light breakfast 90min before: Oats + banana OR toast + jam',
-                            'Target time: 35-37min',
-                            'Post-run: 5min walk, stretch 10min',
-                            'Afternoon 16:00 - Recovery Protocol (45min)',
-                            'Option A: Foam rolling + deep stretching',
-                            'Option B: Swimming (easy laps)',
-                            'Option C: Ice bath + foam rolling'
-                        ]
-                    },
-                    sunday: { distance: '45min', pace: 'Walk', time: '9:00am',
-                        workout: 'Recovery Walk - COMPLETE REST',
-                        details: [
-                            'NO RUNNING on Sundays',
-                            'Easy walking pace (no rushing)',
-                            'Ideal: Nature setting (Botanical Gardens)',
-                            'Optional Evening 18:00 - Mobility + Meditation (30-40min)',
-                            'Hip Mobility Circuit: 90/90 transitions, couch stretch, frog stretch',
-                            'Light Core Work: Dead bugs, planks, bird dogs',
-                            'Meditation + Breathing: Box breathing (5min), body scan'
-                        ]
+            // Fetch and parse markdown for Phase 1
+            fetch('03_Phase1_Foundation.md')
+                .then(res => res.text())
+                .then(md => {
+                    // Use the same parser as in loadTodaysWorkout
+                    const weekData = parsePhase1Markdown(md, weekNum);
+                    if (!weekData) {
+                        container.innerHTML = `<div class="info-box">No plan found for this week.</div>`;
+                        return;
                     }
-                },
-                12: {
-                    monday: { distance: 'REST', pace: '-', time: '-',
-                        workout: 'Complete Rest or Easy Walk',
-                        details: [
-                            'YOU JUST COMPLETED 75 CONSECUTIVE DAYS! 🎉',
-                            'This week is MANDATORY RECOVERY',
-                            'Complete rest OR 20-30min easy walks only',
-                            'No running, no gym',
-                            'Focus: Sleep 9 hours, eat well, hydrate, stretch'
-                        ]
-                    },
-                    tuesday: { distance: 'REST', pace: '-', time: '-',
-                        workout: 'Complete Rest or Easy Walk',
-                        details: [
-                            'Complete rest OR 20-30min easy walks only',
-                            'No running, no gym',
-                            'Focus: Sleep, nutrition, hydration',
-                            'Light stretching allowed'
-                        ]
-                    },
-                    wednesday: { distance: 'REST', pace: '-', time: '-',
-                        workout: 'Complete Rest or Easy Walk',
-                        details: [
-                            'Complete rest OR 20-30min easy walks only',
-                            'No running, no gym',
-                            'Focus: Recovery and celebration',
-                            'Reflect on Phase 1 accomplishments'
-                        ]
-                    },
-                    thursday: { distance: '3km', pace: 'Easy', time: 'Flexible',
-                        workout: 'Test the Legs - Easy Jog',
-                        details: [
-                            'First run after recovery',
-                            'Should feel fresh and easy',
-                            'No pressure on pace',
-                            'Just getting the legs moving again'
-                        ]
-                    },
-                    friday: { distance: '30min', pace: 'Mobility', time: 'Flexible',
-                        workout: 'Light Mobility Session',
-                        details: [
-                            'Gentle stretching',
-                            'Foam rolling (gentle)',
-                            'Hip mobility work',
-                            'Prepare body for Saturday'
-                        ]
-                    },
-                    saturday: { distance: '8km', pace: 'Easy', time: '7:00am',
-                        workout: 'Easy Run - Return to Training',
-                        details: [
-                            'Comfortable pace - just moving',
-                            'Should feel manageable',
-                            'No rush to get back to peak volume',
-                            'Listen to your body'
-                        ]
-                    },
-                    sunday: { distance: 'REST', pace: '-', time: '-',
-                        workout: 'Recovery Walk or Complete Rest',
-                        details: [
-                            'Final day of recovery week',
-                            'Prepare mentally for Phase 2',
-                            'Assess progress: Weight, long run capability, hamstring strength',
-                            'Celebrate completion of 75 To Runner Challenge!'
-                        ]
-                    }
-                }
-            };
-
-            // Get week data (use week 1 template for weeks 2-11)
-            const week = weekData[weekNum] || weekData[1];
-            
-            // Generate HTML
-            let html = `<h2>Week ${weekNum} Detailed Schedule</h2>`;
-            
-            const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-            const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-            
-            days.forEach((day, index) => {
-                const dayData = week[day];
-                html += `
-                    <div class="workout-detail-card">
-                        <div class="workout-detail-header">
-                            <div class="workout-detail-day">${dayNames[index]}</div>
-                            <div class="workout-detail-badge">${dayData.distance}</div>
-                        </div>
-                        <div class="workout-detail-body">
-                            <h3 style="margin-top: 0;">${dayData.workout}</h3>
-                            ${dayData.time !== '-' ? `<p class="text-mono"><strong>Time:</strong> ${dayData.time} | <strong>Pace:</strong> ${dayData.pace}</p>` : ''}
-                            <div class="workout-section">
-                                <div class="workout-section-title">Workout Details</div>
-                                ${dayData.details.map(detail => `
-                                    <div class="workout-instruction">
-                                        <span class="workout-instruction-icon">→</span>
-                                        <span>${detail}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
-            
-            // Scroll to week details
-            container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    let html = `<h2>Week ${weekNum} Detailed Schedule</h2><div class="week-schedule">`;
+                    weekData.forEach(dayObj => {
+                        html += `<div class="day-card">
+                            <div class="day-header"><span>${dayObj.day.toUpperCase()}</span></div>
+                            <div class="day-detail">${marked.parse(dayObj.text)}</div>
+                        </div>`;
+                    });
+                    html += '</div>';
+                    container.innerHTML = html;
+                    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                })
+                .catch(() => {
+                    container.innerHTML = `<div class="info-box">Could not load workout plan.</div>`;
+                });
         }
 
         // Initialize with Week 1 on page load
@@ -5980,4 +5826,637 @@
         }
     </script>
 </body>
+<script>
+const PHASE_CONFIG = {
+    '03_Phase1_Foundation.md': { minWeek: 1, maxWeek: 12 },
+    '04_Phase2_Speed.md': { minWeek: 13, maxWeek: 20 },
+    '05_Phase3_Build.md': { minWeek: 21, maxWeek: 36 },
+    '06_Phase4_Peak.md': { minWeek: 37, maxWeek: 41 },
+    '07_Phase5_Taper_and_RaceDay.md': { minWeek: 42, maxWeek: 44 }
+};
+
+function getSelectedWeek() {
+    return parseInt(document.getElementById('weekSelect').value, 10);
+}
+
+function getSelectedPhaseFile() {
+    return document.getElementById('phaseSelect').value;
+}
+
+function escapeRegex(text) {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function isHeading(line) {
+    return /^#{1,6}\s+/.test(line);
+}
+
+function headingLevel(line) {
+    const match = line.match(/^(#{1,6})\s+/);
+    return match ? match[1].length : null;
+}
+
+function findHeadingSection(md, headingPattern) {
+    const lines = md.split('\n');
+    const pattern = headingPattern instanceof RegExp ? headingPattern : new RegExp(headingPattern, 'i');
+
+    let start = -1;
+    for (let i = 0; i < lines.length; i += 1) {
+        if (pattern.test(lines[i])) {
+            start = i;
+            break;
+        }
+    }
+    if (start === -1) return '';
+
+    const startLevel = headingLevel(lines[start]) || 2;
+    let end = lines.length;
+    for (let j = start + 1; j < lines.length; j += 1) {
+        if (isHeading(lines[j])) {
+            const lvl = headingLevel(lines[j]);
+            if (lvl && lvl <= startLevel) {
+                end = j;
+                break;
+            }
+        }
+    }
+
+    return lines.slice(start, end).join('\n').trim();
+}
+
+function combineSections(parts) {
+    return parts.filter(Boolean).join('\n\n---\n\n').trim();
+}
+
+function extractBetweenHeadings(md, startPattern, endPattern) {
+    const lines = md.split('\n');
+    let start = -1;
+    let end = lines.length;
+
+    for (let i = 0; i < lines.length; i += 1) {
+        if (startPattern.test(lines[i])) {
+            start = i;
+            break;
+        }
+    }
+
+    if (start === -1) return '';
+
+    if (endPattern) {
+        for (let j = start + 1; j < lines.length; j += 1) {
+            if (endPattern.test(lines[j])) {
+                end = j;
+                break;
+            }
+        }
+    }
+
+    return lines.slice(start, end).join('\n').trim();
+}
+
+function parseDayBlocks(sectionMarkdown) {
+    // Accept formats like:
+    // - Monday
+    // - Monday:
+    // - **MONDAY**
+    // - **MONDAY:**
+    // - ### **MONDAY:**
+    const headingDayPattern = /^\s*#{1,6}\s*(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)(?:\s*:)?(?:\s*\*{1,2})?\s*$/i;
+    const fallbackDayPattern = /^\s*(?:#{1,6}\s*)?(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)(?:\s*:)?(?:\s*\*{1,2})?\s*$/i;
+    const lines = sectionMarkdown.split('\n');
+
+    function collectBlocks(pattern) {
+        const blocks = [];
+        let current = null;
+
+        lines.forEach(line => {
+            const match = line.match(pattern);
+            if (match) {
+                if (current) blocks.push(current);
+                current = {
+                    day: match[1],
+                    content: [line]
+                };
+                return;
+            }
+            if (current) {
+                current.content.push(line);
+            }
+        });
+
+        if (current) blocks.push(current);
+
+        return blocks.map(block => ({
+            day: block.day,
+            markdown: block.content.join('\n').trim()
+        }));
+    }
+
+    const headingBlocks = collectBlocks(headingDayPattern);
+    if (headingBlocks.length) return headingBlocks;
+    return collectBlocks(fallbackDayPattern);
+}
+
+function extractTableRowForWeek(sectionMarkdown, weekNum) {
+    const lines = sectionMarkdown.split('\n');
+    for (const line of lines) {
+        if (!line.includes('|')) continue;
+        const cells = line.split('|').map(c => c.trim()).filter(Boolean);
+        if (cells.length < 4) continue;
+        const weekCell = cells[0].replace(/[^0-9]/g, '');
+        if (weekCell && parseInt(weekCell, 10) === weekNum) {
+            return cells;
+        }
+    }
+    return null;
+}
+
+function extractWeekSpecificLine(contentLines, weekNum) {
+    const weekPattern = new RegExp(`^[-*]?\\s*Week\\s*${weekNum}\\s*:\\s*(.+)$`, 'i');
+    for (const line of contentLines) {
+        const match = line.match(weekPattern);
+        if (match) return match[1].trim();
+    }
+    return '';
+}
+
+function extractWeekSpecificTableValues(contentLines, weekNum) {
+    const rowPattern = new RegExp(`^\\|\\s*${weekNum}\\s*\\|\\s*([^|]+?)\\s*\\|\\s*([^|]+?)\\s*\\|\\s*([^|]+?)\\s*\\|`, 'i');
+    for (const line of contentLines) {
+        const match = line.match(rowPattern);
+        if (match) {
+            return {
+                distance: match[1].trim(),
+                pace: match[2].trim(),
+                target: match[3].trim()
+            };
+        }
+    }
+    return null;
+}
+
+function synthesizePhase1Days(sectionMarkdown, weekNum) {
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const dayText = {};
+
+    if (weekNum >= 5 && weekNum <= 8) {
+        const mon = sectionMarkdown.match(/\*\*Monday:\*\*\s*([^\n]+)/i);
+        const wed = sectionMarkdown.match(/\*\*Wednesday:\*\*\s*([^\n]+)/i);
+        const fri = sectionMarkdown.match(/\*\*Friday:\*\*\s*([^\n]+)/i);
+        const row = extractTableRowForWeek(sectionMarkdown, weekNum);
+
+        dayText.Monday = mon ? mon[1] : '5-6km easy run';
+        dayText.Tuesday = 'Recovery walk or optional easy gym session.';
+        dayText.Wednesday = wed ? wed[1] : '5-6km easy + strides';
+        dayText.Thursday = 'Recovery walk or very easy jog based on fatigue.';
+        dayText.Friday = fri ? fri[1] : '5-6km easy';
+        dayText.Saturday = row
+            ? `Long run: ${row[1]} @ ${row[2]} (target ${row[3]}).`
+            : 'Long run progression day (see weekly table).';
+        dayText.Sunday = 'Mandatory rest from running. Recovery walk only.';
+    } else if (weekNum >= 9 && weekNum <= 11) {
+        const mon = sectionMarkdown.match(/\*\*Monday:\*\*\s*([^\n]+)/i);
+        const wed = sectionMarkdown.match(/\*\*Wednesday:\*\*\s*([^\n]+)/i);
+        const fri = sectionMarkdown.match(/\*\*Friday:\*\*\s*([^\n]+)/i);
+        const row = extractTableRowForWeek(sectionMarkdown, weekNum);
+
+        dayText.Monday = mon ? mon[1] : '6-7km easy';
+        dayText.Tuesday = 'Recovery walk or optional light strength maintenance.';
+        dayText.Wednesday = wed ? wed[1] : '6km easy + strides';
+        dayText.Thursday = 'Recovery walk or easy jog depending on freshness.';
+        dayText.Friday = fri ? fri[1] : '6km progression run';
+        dayText.Saturday = row
+            ? `Long run: ${row[1]} @ ${row[2]} (${row[3]}).`
+            : 'Long run progression day (see weekly table).';
+        dayText.Sunday = 'Mandatory rest from running. Recovery walk optional.';
+    } else if (weekNum === 12) {
+        dayText.Monday = 'Recovery protocol: complete rest OR 20-30min easy walk.';
+        dayText.Tuesday = 'Recovery protocol: complete rest OR 20-30min easy walk.';
+        dayText.Wednesday = 'Recovery protocol: complete rest OR 20-30min easy walk.';
+        dayText.Thursday = 'Test legs: 3km easy jog.';
+        dayText.Friday = 'Light mobility session (30min), gentle stretching, foam rolling.';
+        dayText.Saturday = '8km easy run at comfortable pace.';
+        dayText.Sunday = 'Recovery walk or complete rest.';
+    } else {
+        return [];
+    }
+
+    return days.map(day => ({
+        day,
+        markdown: `### **${day.toUpperCase()}:**\n\n- ${dayText[day] || 'See weekly guidance.'}`
+    }));
+}
+
+function extractStructuredDay(dayBlock, weekNum) {
+    const rawLines = dayBlock.markdown.split('\n');
+    const contentLinesRaw = rawLines.filter(line => !/^(#{1,6}\s*)?(\*\*|\*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)/i.test(line));
+    const contentLines = contentLinesRaw.map(line => line.trim()).filter(Boolean);
+    const contentText = contentLines.join(' ');
+    const fullMarkdown = contentLinesRaw.join('\n').trim();
+
+    const weekSpecificLine = extractWeekSpecificLine(contentLines, weekNum);
+    const weekTableValues = extractWeekSpecificTableValues(contentLines, weekNum);
+    const weekSpecificText = [weekSpecificLine, weekTableValues ? `${weekTableValues.distance} ${weekTableValues.pace}` : ''].join(' ').trim();
+
+    const distanceMatch = contentText.match(/\b(\d+(?:\.\d+)?\s?km|\d+x\d+m|\d+\s?min|REST|RACE DAY|WALK)\b/i);
+    const weekDistanceMatch = weekSpecificText.match(/\b(\d+(?:\.\d+)?\s?km|\d+x\d+m|\d+\s?min|REST|RACE DAY|WALK)\b/i);
+    const timeMatch = contentText.match(/\b([0-2]?\d:[0-5]\d\s?(?:am|pm)?)\b/i);
+    const paceMatch = contentText.match(/\b\d{1,2}:\d{2}(?:\s?[\-–]\s?\d{1,2}:\d{2})?\s*\/km\b/i);
+    const weekPaceMatch = weekSpecificText.match(/\b\d{1,2}:\d{2}(?:\s?[\-–]\s?\d{1,2}:\d{2})?\s*\/km\b/i);
+
+    const hasMorning = /\bMorning\b/i.test(contentText);
+    const hasEvening = /\bEvening\b/i.test(contentText);
+    const hasGym = /\b(Strength Session|Gym|Virgin Active|Dumbbell|Pull-ups|Goblet Squats)\b/i.test(contentText);
+    const hasMobility = /\bMobility Session\b/i.test(contentText);
+    const hasStrength = /\b(Hamstring Strength Circuit|Nordic Curls|Strength Circuit)\b/i.test(contentText);
+    let sessionSummary = '';
+    if (hasMorning && hasEvening) {
+        if (hasGym) sessionSummary = 'Morning + Evening Gym Session';
+        else if (hasStrength) sessionSummary = 'Morning + Evening Strength Session';
+        else if (hasMobility) sessionSummary = 'Morning + Evening Mobility Session';
+        else sessionSummary = 'Morning + Evening Sessions';
+    }
+
+    const primaryBadge = weekDistanceMatch
+        ? weekDistanceMatch[1].toUpperCase()
+        : (distanceMatch ? distanceMatch[1].toUpperCase() : 'DAY PLAN');
+    let secondaryBadge = '';
+    if (hasMorning && hasEvening) {
+        if (hasGym) secondaryBadge = 'GYM';
+        else if (hasStrength) secondaryBadge = 'STRENGTH';
+        else if (hasMobility) secondaryBadge = 'MOBILITY';
+        else secondaryBadge = 'PM SESSION';
+    }
+    const badgeLabel = secondaryBadge ? `${primaryBadge} + ${secondaryBadge}` : primaryBadge;
+
+    let workoutTitle = '';
+    for (let i = 0; i < contentLines.length; i += 1) {
+        const line = contentLines[i]
+            .replace(/^#{1,6}\s*/, '')
+            .replace(/^\*+|\*+$/g, '')
+            .replace(/:$/, '')
+            .trim();
+        if (!line) continue;
+        if (/^[-*]\s+/.test(contentLines[i])) continue;
+        if (/^(Morning|Evening)\b/i.test(line)) continue;
+        if (/^Week\s+\d+/i.test(line)) continue;
+        workoutTitle = line;
+        break;
+    }
+    if (!workoutTitle) workoutTitle = 'Daily Session';
+
+    const bulletDetails = contentLines
+        .filter(line => /^[-*]\s+/.test(line))
+        .map(line => line.replace(/^[-*]\s+/, '').trim())
+        .filter(Boolean);
+
+    const details = bulletDetails.length
+        ? bulletDetails
+        : contentLines
+            .map(line => line.replace(/^#{1,6}\s*/, '').replace(/^\*+|\*+$/g, '').trim())
+            .filter(line => line && line.toLowerCase() !== workoutTitle.toLowerCase())
+            .slice(0, 8);
+
+    const previewDetails = details.slice(0, 3);
+
+    return {
+        day: dayBlock.day,
+        distance: primaryBadge,
+        badgeLabel,
+        workout: workoutTitle,
+        time: timeMatch ? timeMatch[1].toUpperCase() : '-',
+        pace: weekPaceMatch ? weekPaceMatch[0] : (paceMatch ? paceMatch[0] : '-'),
+        details,
+        previewDetails,
+        fullMarkdown,
+        sessionSummary
+    };
+}
+
+function renderWeekCards(dayBlocks, options) {
+    const todayName = options.todayName || '';
+    const detailed = !!options.detailed;
+    const weekNum = options.weekNum || 1;
+    const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const structured = dayBlocks.map(day => extractStructuredDay(day, weekNum));
+    const byDay = new Map(structured.map(day => [day.day.toLowerCase(), day]));
+
+    // Always render a full week so users can see every day even when markdown is sparse.
+    const renderedCards = weekDays.map(dayName => {
+        const existing = byDay.get(dayName.toLowerCase());
+        if (existing) return existing;
+        return {
+            day: dayName,
+            distance: 'TBD',
+            workout: 'No Specific Session Listed',
+            time: '-',
+            pace: '-',
+            details: [
+                'No explicit workout was found for this day in the markdown week block.',
+                'Use this as a flexible/recovery slot unless your coach notes say otherwise.'
+            ]
+        };
+    });
+
+    if (detailed) {
+        return renderedCards.map(dayData => {
+            const isToday = todayName && dayData.day.toLowerCase() === todayName.toLowerCase();
+            return `
+                <div class="workout-detail-card" ${isToday ? 'style="border-color: var(--red);"' : ''}>
+                    <div class="workout-detail-header" ${isToday ? 'style="background: var(--red);"' : ''}>
+                        <div class="workout-detail-day">${dayData.day.toUpperCase()}</div>
+                        <div class="workout-detail-badge" ${isToday ? 'style="background: var(--black);"' : ''}>${dayData.badgeLabel || dayData.distance}</div>
+                    </div>
+                    <div class="workout-detail-body">
+                        <h3 style="margin-top: 0;">${dayData.workout}</h3>
+                        ${dayData.time !== '-' || dayData.pace !== '-' ? `<p class="text-mono"><strong>Time:</strong> ${dayData.time} | <strong>Pace:</strong> ${dayData.pace}</p>` : ''}
+                        ${dayData.sessionSummary ? `<p class="text-mono"><strong>Sessions:</strong> ${dayData.sessionSummary}</p>` : ''}
+                        <div class="workout-section">
+                            <div class="workout-section-title">Workout Details</div>
+                            <div>${marked.parse(dayData.fullMarkdown || dayData.markdown || '')}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    return `
+        <div class="week-schedule">
+            ${renderedCards.map(dayData => {
+                const isToday = todayName && dayData.day.toLowerCase() === todayName.toLowerCase();
+                return `
+                    <div class="day-card" ${isToday ? 'style="border-color: var(--red); background: var(--gray-100);"' : ''}>
+                        <div class="day-header">
+                            <span>${dayData.day.toUpperCase()}</span>
+                            <span>${dayData.distance}</span>
+                        </div>
+                        <div class="day-title">${dayData.workout}</div>
+                        <div class="day-detail">${dayData.previewDetails.join(' • ') || 'See detailed day view for full breakdown.'}</div>
+                    </div>
+                `;
+            }).join('')}
+        </div>
+    `;
+}
+
+function extractWeekSection(md, phaseFile, weekNum) {
+    if (phaseFile === '03_Phase1_Foundation.md') {
+        if (weekNum >= 1 && weekNum <= 4) {
+            return extractBetweenHeadings(
+                md,
+                /WEEKS 1-4: ADAPTATION PHASE/i,
+                /WEEKS 5-8: VOLUME BUILDING PHASE/i
+            );
+        }
+        if (weekNum >= 5 && weekNum <= 8) {
+            return extractBetweenHeadings(
+                md,
+                /WEEKS 5-8: VOLUME BUILDING PHASE/i,
+                /WEEKS 9-11: CONSOLIDATION PHASE/i
+            );
+        }
+        if (weekNum >= 9 && weekNum <= 11) {
+            return extractBetweenHeadings(
+                md,
+                /WEEKS 9-11: CONSOLIDATION PHASE/i,
+                /WEEK 12: RECOVERY WEEK/i
+            );
+        }
+        if (weekNum === 12) {
+            return extractBetweenHeadings(
+                md,
+                /WEEK 12: RECOVERY WEEK/i,
+                /PHASE 1 SUMMARY/i
+            );
+        }
+        return '';
+    }
+
+    if (phaseFile === '04_Phase2_Speed.md') {
+        if (weekNum === 13) return findHeadingSection(md, /Week 13: RECOVERY WEEK/i);
+        if (weekNum >= 16 && weekNum <= 18) return findHeadingSection(md, /CRITICAL: EXAM PERIOD/i);
+        if (weekNum >= 14 && weekNum <= 15) {
+            return combineSections([
+                findHeadingSection(md, /NEW WEEKLY STRUCTURE \(WEEKS 14-15, 19-20\)/i),
+                findHeadingSection(md, /MONDAY: SPEED SESSION/i),
+                findHeadingSection(md, /TUESDAY: EASY RUN/i),
+                findHeadingSection(md, /WEDNESDAY: TEMPO RUN/i),
+                findHeadingSection(md, /THURSDAY: EASY RUN OR REST/i),
+                findHeadingSection(md, /FRIDAY: EASY RUN/i),
+                findHeadingSection(md, /SATURDAY: LONG RUN/i),
+                findHeadingSection(md, /SUNDAY: RECOVERY/i)
+            ]);
+        }
+        if (weekNum >= 19 && weekNum <= 20) {
+            return combineSections([
+                findHeadingSection(md, /NEW WEEKLY STRUCTURE \(WEEKS 14-15, 19-20\)/i),
+                findHeadingSection(md, /MONDAY: SPEED SESSION/i),
+                findHeadingSection(md, /TUESDAY: EASY RUN/i),
+                findHeadingSection(md, /WEDNESDAY: TEMPO RUN/i),
+                findHeadingSection(md, /THURSDAY: EASY RUN OR REST/i),
+                findHeadingSection(md, /FRIDAY: EASY RUN/i),
+                findHeadingSection(md, /SATURDAY: LONG RUN/i),
+                findHeadingSection(md, /SUNDAY: RECOVERY/i),
+                findHeadingSection(md, /WEEK 20 ASSESSMENT/i)
+            ]);
+        }
+        return '';
+    }
+
+    if (phaseFile === '05_Phase3_Build.md') {
+        if (weekNum === 32 || weekNum === 35 || weekNum === 36) {
+            return combineSections([
+                findHeadingSection(md, /RACE WEEK PROTOCOLS/i),
+                findHeadingSection(md, /WEEKLY VOLUME \(PHASE 3 OVERVIEW\)/i)
+            ]);
+        }
+        return combineSections([
+            findHeadingSection(md, /WEEKLY STRUCTURE \(WEEKS 21-36\)/i),
+            findHeadingSection(md, /MONDAY: SPEED INTERVALS/i),
+            findHeadingSection(md, /TUESDAY: EASY RUN/i),
+            findHeadingSection(md, /WEDNESDAY: TEMPO\/THRESHOLD RUN/i),
+            findHeadingSection(md, /THURSDAY: EASY RUN OR REST/i),
+            findHeadingSection(md, /FRIDAY: EASY RUN/i),
+            findHeadingSection(md, /SATURDAY: LONG RUN/i),
+            findHeadingSection(md, /SUNDAY: RECOVERY/i),
+            findHeadingSection(md, /WEEKLY VOLUME \(PHASE 3 OVERVIEW\)/i)
+        ]);
+    }
+
+    if (phaseFile === '06_Phase4_Peak.md') {
+        if (weekNum === 38) return findHeadingSection(md, /WEEK 38: FORD 3-IN-1 HALF MARATHON/i);
+        if (weekNum === 39) return findHeadingSection(md, /WEEK 39: POST-FORD RECOVERY WEEK/i);
+        return combineSections([
+            findHeadingSection(md, /WEEKLY STRUCTURE \(WEEKS 37, 39-41\)/i),
+            findHeadingSection(md, /MONDAY: FAST INTERVALS/i),
+            findHeadingSection(md, /TUESDAY: EASY RUN/i),
+            findHeadingSection(md, /WEDNESDAY: RACE PACE TEMPO/i),
+            findHeadingSection(md, /THURSDAY: EASY RUN OR REST/i),
+            findHeadingSection(md, /FRIDAY: EASY RUN/i),
+            findHeadingSection(md, /SATURDAY: LONG RUN/i),
+            findHeadingSection(md, /SUNDAY: RECOVERY/i)
+        ]);
+    }
+
+    if (phaseFile === '07_Phase5_Taper_and_RaceDay.md') {
+        if (weekNum === 42) return findHeadingSection(md, /WEEK 42: FIRST TAPER WEEK/i);
+        if (weekNum === 43) return findHeadingSection(md, /WEEK 43: SECOND TAPER WEEK/i);
+        if (weekNum === 44) return combineSections([
+            findHeadingSection(md, /WEEK 44: RACE WEEK/i),
+            findHeadingSection(md, /SOWETO MARATHON - 21\.1KM/i)
+        ]);
+        return '';
+    }
+
+    return '';
+}
+
+function weekTitleForPhase(phaseFile, weekNum) {
+    const label = phaseFile.replace('.md', '').replace(/^[0-9]+_/, '').replace(/_/g, ' ');
+    return `Week ${weekNum} • ${label}`;
+}
+
+function setActiveWeekButton(sectionSelector, weekNum) {
+    const buttons = document.querySelectorAll(sectionSelector + ' .week-btn');
+    buttons.forEach(btn => {
+        const isActive = btn.textContent.trim().toLowerCase() === `week ${weekNum}`.toLowerCase();
+        btn.classList.toggle('active', isActive);
+    });
+}
+
+async function loadMarkdownWeekInto(containerId, phaseFile, weekNum, includeTodayHeader) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+        const response = await fetch(phaseFile);
+        if (!response.ok) throw new Error('Failed to fetch phase markdown');
+        const markdown = await response.text();
+        const weekSection = extractWeekSection(markdown, phaseFile, weekNum);
+
+        if (!weekSection) {
+            container.innerHTML = '<div class="info-box">No matching plan section found for this week.</div>';
+            return;
+        }
+
+        const todayName = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+        let dayBlocks = parseDayBlocks(weekSection);
+        if (!dayBlocks.length && phaseFile === '03_Phase1_Foundation.md') {
+            dayBlocks = synthesizePhase1Days(weekSection, weekNum);
+        }
+        const title = weekTitleForPhase(phaseFile, weekNum);
+        let header = '';
+        const dayContext = `<div class="daily-reset-banner">Today is ${todayName.toUpperCase()} - follow the ${todayName.toUpperCase()} block below.</div>`;
+        if (includeTodayHeader) {
+            header = `<div class="info-box"><div class="info-box-title">Today: ${todayName}</div><p style="margin:0;">Showing this week's official plan in the interactive week layout.</p></div>`;
+        }
+
+        let bodyHtml = '';
+        bodyHtml = renderWeekCards(dayBlocks, {
+            detailed: true,
+            todayName: todayName,
+            weekNum: weekNum
+        });
+
+        container.innerHTML = `${header}${dayContext}<h2>${title}</h2>${bodyHtml}`;
+    } catch (error) {
+        container.innerHTML = '<div class="info-box">Could not load workout plan.</div>';
+    }
+}
+
+function updateTodayWeekOptions() {
+    const phaseFile = getSelectedPhaseFile();
+    const weekSelect = document.getElementById('weekSelect');
+    const config = PHASE_CONFIG[phaseFile] || { minWeek: 1, maxWeek: 12 };
+    const previous = parseInt(weekSelect.value, 10);
+
+    weekSelect.innerHTML = '';
+    for (let w = config.minWeek; w <= config.maxWeek; w += 1) {
+        const option = document.createElement('option');
+        option.value = String(w);
+        option.textContent = `Week ${w}`;
+        weekSelect.appendChild(option);
+    }
+
+    const fallback = config.minWeek;
+    const nextValue = Number.isInteger(previous) && previous >= config.minWeek && previous <= config.maxWeek
+        ? previous
+        : fallback;
+    weekSelect.value = String(nextValue);
+}
+
+async function loadTodaysWorkout() {
+    const phaseFile = getSelectedPhaseFile();
+    const weekNum = getSelectedWeek();
+    const dateEl = document.getElementById('todayDate');
+    if (dateEl) {
+        dateEl.textContent = new Date().toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+    await loadMarkdownWeekInto('todaysWorkoutContent', phaseFile, weekNum, true);
+}
+
+function showTodaysWorkout() {
+    showSection('todays-workout');
+    loadTodaysWorkout();
+}
+
+function showWeekDetails(weekNum) {
+    setActiveWeekButton('#phase1', weekNum);
+    loadMarkdownWeekInto('weekDetailsContainer', '03_Phase1_Foundation.md', weekNum, false);
+}
+
+function showPhase2Week(weekNum) {
+    setActiveWeekButton('#phase2', weekNum);
+    loadMarkdownWeekInto('phase2WeekDetails', '04_Phase2_Speed.md', weekNum, false);
+}
+
+function showPhase3Week(weekNum) {
+    setActiveWeekButton('#phase3', weekNum);
+    loadMarkdownWeekInto('phase3WeekDetails', '05_Phase3_Build.md', weekNum, false);
+}
+
+function showPhase4Week(weekNum) {
+    setActiveWeekButton('#phase4', weekNum);
+    loadMarkdownWeekInto('phase4WeekDetails', '06_Phase4_Peak.md', weekNum, false);
+}
+
+function showPhase5Week(weekNum) {
+    setActiveWeekButton('#phase5', weekNum);
+    loadMarkdownWeekInto('phase5WeekDetails', '07_Phase5_Taper_and_RaceDay.md', weekNum, false);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const loadBtn = document.getElementById('loadWorkoutBtn');
+    const phaseSelect = document.getElementById('phaseSelect');
+    const weekSelect = document.getElementById('weekSelect');
+
+    if (phaseSelect) {
+        phaseSelect.addEventListener('change', function() {
+            updateTodayWeekOptions();
+            loadTodaysWorkout();
+        });
+    }
+    if (weekSelect) {
+        weekSelect.addEventListener('change', loadTodaysWorkout);
+    }
+    if (loadBtn) {
+        loadBtn.addEventListener('click', loadTodaysWorkout);
+    }
+
+    updateTodayWeekOptions();
+
+    // Initial sync of per-phase week sections.
+    showWeekDetails(1);
+    showPhase2Week(13);
+    showPhase3Week(21);
+    showPhase4Week(37);
+    showPhase5Week(42);
+});
+</script>
 </html>
