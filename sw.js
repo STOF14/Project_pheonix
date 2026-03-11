@@ -1,6 +1,6 @@
 // 280 Days PWA Service Worker
 // Version — bump this to force cache refresh after updates
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_NAME = '280days-' + CACHE_VERSION;
 
 // Files to cache for offline use
@@ -8,6 +8,7 @@ const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
+  './checkers_receipt_enriched.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
   // Google Fonts (cached on first load)
