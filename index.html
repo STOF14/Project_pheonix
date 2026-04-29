@@ -6763,8 +6763,8 @@ function parseDayBlocks(sectionMarkdown) {
     // - **MONDAY**
     // - **MONDAY:**
     // - ### **MONDAY:**
-    const headingDayPattern = /^\s*#{1,6}\s*(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b.*$/i;
-    const fallbackDayPattern = /^\s*(?:#{1,6}\s*)?(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b.*$/i;
+    const headingDayPattern = /^\s*#{1,6}\s*(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b(?:\s*[:\-–—]\s*.*)?(?:\*{0,2})?\s*$/i;
+    const fallbackDayPattern = /^\s*(?:#{1,6}\s*)?(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b(?:\s*[:\-–—]\s*.*)?(?:\*{0,2})?\s*$/i;
     const lines = sectionMarkdown.split('\n');
 
     function collectBlocks(pattern) {
