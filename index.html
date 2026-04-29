@@ -1464,23 +1464,15 @@
                     </div>
                     <div class="nav-item" onclick="showSection('phase1')">
                         <span class="nav-number">03</span>
-                        <span>75 To Runner</span>
+                        <span>Foundation Build</span>
                     </div>
                     <div class="nav-item" onclick="showSection('phase2')">
                         <span class="nav-number">04</span>
-                        <span>Speed Intro</span>
+                        <span>Speed Introduction</span>
                     </div>
                     <div class="nav-item" onclick="showSection('phase3')">
                         <span class="nav-number">05</span>
-                        <span>Build Phase</span>
-                    </div>
-                    <div class="nav-item" onclick="showSection('phase4')">
-                        <span class="nav-number">06</span>
-                        <span>Peak Phase</span>
-                    </div>
-                    <div class="nav-item" onclick="showSection('phase5')">
-                        <span class="nav-number">07</span>
-                        <span>Taper + Race</span>
+                        <span>Peak + Taper</span>
                     </div>
                     <div class="nav-item" onclick="showSection('races')">
                         <span class="nav-number">08</span>
@@ -1549,11 +1541,9 @@
                     <div>
                         <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--spacing-sm);">Current Phase:</label>
                         <select id="phaseSelect" style="width: 100%; padding: var(--spacing-sm); border: 2px solid var(--black); font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600;">
-                            <option value="03_Phase1_Foundation.md">Phase 1: 75 To Runner</option>
-                            <option value="04_Phase2_Speed.md">Phase 2: Speed Intro</option>
-                            <option value="05_Phase3_Build.md">Phase 3: Build</option>
-                            <option value="06_Phase4_Peak.md">Phase 4: Peak</option>
-                            <option value="07_Phase5_Taper_and_RaceDay.md">Phase 5: Taper</option>
+                            <option value="02_Phase1_Foundation.md">Phase 1: Foundation Build</option>
+                            <option value="03_Phase2_Speed.md">Phase 2: Speed Introduction</option>
+                            <option value="04_Phase3_Peak_and_Taper.md">Phase 3: Peak + Taper</option>
                         </select>
                     </div>
                     <div>
@@ -1971,9 +1961,9 @@
 
             <!-- Phase 1 Section -->
             <section id="phase1" class="content-section">
-                <h1>PHASE 1: FOUNDATION</h1>
-                <p class="text-mono" style="font-size: 16px;">WEEKS 1-12 (FEBRUARY 15 - MAY 8, 2026)</p>
-                <p class="text-mono" style="font-size: 18px; font-weight: 700; color: var(--red);">THE 75 TO RUNNER CHALLENGE</p>
+                <h1>PHASE 1: FOUNDATION BUILD</h1>
+                <p class="text-mono" style="font-size: 16px;">WEEKS 1-12 (MAY 4 - JULY 26, 2026)</p>
+                <p class="text-mono" style="font-size: 18px; font-weight: 700; color: var(--red);">BASE BUILDING BLOCK</p>
 
                 <div class="info-box">
                     <div class="info-box-title">Primary Goals</div>
@@ -2167,7 +2157,7 @@
             <!-- Phase 2 Section -->
             <section id="phase2" class="content-section">
                 <h1>PHASE 2: SPEED INTRODUCTION</h1>
-                <p class="text-mono" style="font-size: 16px;">WEEKS 13-20 (MAY 9 - JUNE 27, 2026)</p>
+                <p class="text-mono" style="font-size: 16px;">WEEKS 13-21 (JULY 27 - SEPTEMBER 27, 2026)</p>
 
                 <div class="info-box">
                     <div class="info-box-title">Primary Goals</div>
@@ -2191,6 +2181,7 @@
                     <button class="week-btn" onclick="showPhase2Week(18)">Week 18</button>
                     <button class="week-btn" onclick="showPhase2Week(19)">Week 19</button>
                     <button class="week-btn" onclick="showPhase2Week(20)">Week 20</button>
+                    <button class="week-btn" onclick="showPhase2Week(21)">Week 21</button>
                 </div>
 
                 <div id="phase2WeekDetails"></div>
@@ -2221,8 +2212,8 @@
 
             <!-- Phase 3 Section -->
             <section id="phase3" class="content-section">
-                <h1>PHASE 3: BUILD PHASE</h1>
-                <p class="text-mono" style="font-size: 16px;">WEEKS 21-36 (JUNE 28 - OCTOBER 10, 2026)</p>
+                <h1>PHASE 3: PEAK + TAPER</h1>
+                <p class="text-mono" style="font-size: 16px;">WEEKS 22-30 (SEPTEMBER 28 - NOVEMBER 29, 2026)</p>
 
                 <div class="info-box">
                     <div class="info-box-title">Primary Goals</div>
@@ -2237,8 +2228,7 @@
 
                 <h2>Week Selector</h2>
                 <div class="week-selector">
-                    <button class="week-btn active" onclick="showPhase3Week(21)">Week 21</button>
-                    <button class="week-btn" onclick="showPhase3Week(22)">Week 22</button>
+                    <button class="week-btn active" onclick="showPhase3Week(22)">Week 22</button>
                     <button class="week-btn" onclick="showPhase3Week(23)">Week 23</button>
                     <button class="week-btn" onclick="showPhase3Week(24)">Week 24</button>
                     <button class="week-btn" onclick="showPhase3Week(25)">Week 25</button>
@@ -2247,12 +2237,6 @@
                     <button class="week-btn" onclick="showPhase3Week(28)">Week 28</button>
                     <button class="week-btn" onclick="showPhase3Week(29)">Week 29</button>
                     <button class="week-btn" onclick="showPhase3Week(30)">Week 30</button>
-                    <button class="week-btn" onclick="showPhase3Week(31)">Week 31</button>
-                    <button class="week-btn" onclick="showPhase3Week(32)">Week 32</button>
-                    <button class="week-btn" onclick="showPhase3Week(33)">Week 33</button>
-                    <button class="week-btn" onclick="showPhase3Week(34)">Week 34</button>
-                    <button class="week-btn" onclick="showPhase3Week(35)">Week 35</button>
-                    <button class="week-btn" onclick="showPhase3Week(36)">Week 36</button>
                 </div>
 
                 <div id="phase3WeekDetails"></div>
@@ -5353,7 +5337,7 @@
             event.target.classList.add('active');
 
             // Fetch and parse markdown for Phase 1
-            fetch('03_Phase1_Foundation.md')
+            fetch('02_Phase1_Foundation.md')
                 .then(res => res.text())
                 .then(md => {
                     // Use the same parser as in loadTodaysWorkout
@@ -6453,18 +6437,16 @@
 </body>
 <script>
 const PHASE_CONFIG = {
-    '03_Phase1_Foundation.md': { minWeek: 1, maxWeek: 12 },
-    '04_Phase2_Speed.md': { minWeek: 13, maxWeek: 20 },
-    '05_Phase3_Build.md': { minWeek: 21, maxWeek: 36 },
-    '06_Phase4_Peak.md': { minWeek: 37, maxWeek: 41 },
-    '07_Phase5_Taper_and_RaceDay.md': { minWeek: 42, maxWeek: 44 }
+    '02_Phase1_Foundation.md': { minWeek: 1, maxWeek: 12 },
+    '03_Phase2_Speed.md': { minWeek: 13, maxWeek: 21 },
+    '04_Phase3_Peak_and_Taper.md': { minWeek: 22, maxWeek: 30 }
 };
 
 const markdownCache = new Map();
 const weekSectionCache = new Map();
 const completionStorageKey = 'weekCompletionV1';
 
-let currentPhaseFile = '03_Phase1_Foundation.md';
+let currentPhaseFile = '02_Phase1_Foundation.md';
 let currentWeekNum = 1;
 
 function getCompletionMap() {
@@ -6781,8 +6763,8 @@ function parseDayBlocks(sectionMarkdown) {
     // - **MONDAY**
     // - **MONDAY:**
     // - ### **MONDAY:**
-    const headingDayPattern = /^\s*#{1,6}\s*(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)(?:\s*:)?(?:\s*\*{1,2})?\s*$/i;
-    const fallbackDayPattern = /^\s*(?:#{1,6}\s*)?(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)(?:\s*:)?(?:\s*\*{1,2})?\s*$/i;
+    const headingDayPattern = /^\s*#{1,6}\s*(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b.*$/i;
+    const fallbackDayPattern = /^\s*(?:#{1,6}\s*)?(?:\*{1,2}\s*)?(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b.*$/i;
     const lines = sectionMarkdown.split('\n');
 
     function collectBlocks(pattern) {
@@ -6817,14 +6799,28 @@ function parseDayBlocks(sectionMarkdown) {
     return collectBlocks(fallbackDayPattern);
 }
 
+function parseWeekCellRange(weekCell) {
+    const match = String(weekCell).match(/(\d+)\s*(?:[-–—]\s*(\d+))?/);
+    if (!match) return null;
+    const start = parseInt(match[1], 10);
+    const end = match[2] ? parseInt(match[2], 10) : start;
+    if (!Number.isFinite(start) || !Number.isFinite(end)) return null;
+    return { start, end };
+}
+
+function weekCellMatches(weekCell, weekNum) {
+    const range = parseWeekCellRange(weekCell);
+    if (!range) return false;
+    return weekNum >= range.start && weekNum <= range.end;
+}
+
 function extractTableRowForWeek(sectionMarkdown, weekNum) {
     const lines = sectionMarkdown.split('\n');
     for (const line of lines) {
         if (!line.includes('|')) continue;
         const cells = line.split('|').map(c => c.trim()).filter(Boolean);
-        if (cells.length < 4) continue;
-        const weekCell = cells[0].replace(/[^0-9]/g, '');
-        if (weekCell && parseInt(weekCell, 10) === weekNum) {
+        if (cells.length < 2) continue;
+        if (weekCellMatches(cells[0], weekNum)) {
             return cells;
         }
     }
@@ -6832,25 +6828,33 @@ function extractTableRowForWeek(sectionMarkdown, weekNum) {
 }
 
 function extractWeekSpecificLine(contentLines, weekNum) {
-    const weekPattern = new RegExp(`^[-*]?\\s*Week\\s*${weekNum}\\s*:\\s*(.+)$`, 'i');
-    for (const line of contentLines) {
+    const weekPattern = new RegExp(`^[-*]?\\s*(?:\\*+\\s*)?Week\\s*${weekNum}\\s*:?(?:\\s*(.+))?$`, 'i');
+    for (let i = 0; i < contentLines.length; i += 1) {
+        const line = contentLines[i];
         const match = line.match(weekPattern);
-        if (match) return match[1].trim();
+        if (!match) continue;
+        if (match[1]) return match[1].trim();
+        for (let j = i + 1; j < contentLines.length; j += 1) {
+            const next = contentLines[j].replace(/^[-*]\s+/, '').trim();
+            if (next) return next;
+        }
+        return '';
     }
     return '';
 }
 
 function extractWeekSpecificTableValues(contentLines, weekNum) {
-    const rowPattern = new RegExp(`^\\|\\s*${weekNum}\\s*\\|\\s*([^|]+?)\\s*\\|\\s*([^|]+?)\\s*\\|\\s*([^|]+?)\\s*\\|`, 'i');
     for (const line of contentLines) {
-        const match = line.match(rowPattern);
-        if (match) {
-            return {
-                distance: match[1].trim(),
-                pace: match[2].trim(),
-                target: match[3].trim()
-            };
-        }
+        if (!line.includes('|')) continue;
+        const cells = line.split('|').map(c => c.trim()).filter(Boolean);
+        if (cells.length < 2) continue;
+        if (!weekCellMatches(cells[0], weekNum)) continue;
+        const [distance, pace, target] = cells.slice(1);
+        return {
+            distance: distance || '',
+            pace: pace || '',
+            target: target || ''
+        };
     }
     return null;
 }
@@ -7064,114 +7068,15 @@ function renderWeekCards(dayBlocks, options) {
 }
 
 function extractWeekSection(md, phaseFile, weekNum) {
-    if (phaseFile === '03_Phase1_Foundation.md') {
-        if (weekNum >= 1 && weekNum <= 4) {
-            return extractBetweenHeadings(
-                md,
-                /WEEKS 1-4: ADAPTATION PHASE/i,
-                /WEEKS 5-8: VOLUME BUILDING PHASE/i
-            );
-        }
-        if (weekNum >= 5 && weekNum <= 8) {
-            return extractBetweenHeadings(
-                md,
-                /WEEKS 5-8: VOLUME BUILDING PHASE/i,
-                /WEEKS 9-11: CONSOLIDATION PHASE/i
-            );
-        }
-        if (weekNum >= 9 && weekNum <= 11) {
-            return extractBetweenHeadings(
-                md,
-                /WEEKS 9-11: CONSOLIDATION PHASE/i,
-                /WEEK 12: RECOVERY WEEK/i
-            );
-        }
-        if (weekNum === 12) {
-            return extractBetweenHeadings(
-                md,
-                /WEEK 12: RECOVERY WEEK/i,
-                /PHASE 1 SUMMARY/i
-            );
-        }
-        return '';
+    if (phaseFile === '02_Phase1_Foundation.md') {
+        return (weekNum >= 1 && weekNum <= 12) ? md : '';
     }
-
-    if (phaseFile === '04_Phase2_Speed.md') {
-        if (weekNum === 13) return findHeadingSection(md, /Week 13: RECOVERY WEEK/i);
-        if (weekNum >= 16 && weekNum <= 18) return findHeadingSection(md, /CRITICAL: EXAM PERIOD/i);
-        if (weekNum >= 14 && weekNum <= 15) {
-            return combineSections([
-                findHeadingSection(md, /NEW WEEKLY STRUCTURE \(WEEKS 14-15, 19-20\)/i),
-                findHeadingSection(md, /MONDAY: SPEED SESSION/i),
-                findHeadingSection(md, /TUESDAY: EASY RUN/i),
-                findHeadingSection(md, /WEDNESDAY: TEMPO RUN/i),
-                findHeadingSection(md, /THURSDAY: EASY RUN OR REST/i),
-                findHeadingSection(md, /FRIDAY: EASY RUN/i),
-                findHeadingSection(md, /SATURDAY: LONG RUN/i),
-                findHeadingSection(md, /SUNDAY: RECOVERY/i)
-            ]);
-        }
-        if (weekNum >= 19 && weekNum <= 20) {
-            return combineSections([
-                findHeadingSection(md, /NEW WEEKLY STRUCTURE \(WEEKS 14-15, 19-20\)/i),
-                findHeadingSection(md, /MONDAY: SPEED SESSION/i),
-                findHeadingSection(md, /TUESDAY: EASY RUN/i),
-                findHeadingSection(md, /WEDNESDAY: TEMPO RUN/i),
-                findHeadingSection(md, /THURSDAY: EASY RUN OR REST/i),
-                findHeadingSection(md, /FRIDAY: EASY RUN/i),
-                findHeadingSection(md, /SATURDAY: LONG RUN/i),
-                findHeadingSection(md, /SUNDAY: RECOVERY/i),
-                findHeadingSection(md, /WEEK 20 ASSESSMENT/i)
-            ]);
-        }
-        return '';
+    if (phaseFile === '03_Phase2_Speed.md') {
+        return (weekNum >= 13 && weekNum <= 21) ? md : '';
     }
-
-    if (phaseFile === '05_Phase3_Build.md') {
-        if (weekNum === 32 || weekNum === 35 || weekNum === 36) {
-            return combineSections([
-                findHeadingSection(md, /RACE WEEK PROTOCOLS/i),
-                findHeadingSection(md, /WEEKLY VOLUME \(PHASE 3 OVERVIEW\)/i)
-            ]);
-        }
-        return combineSections([
-            findHeadingSection(md, /WEEKLY STRUCTURE \(WEEKS 21-36\)/i),
-            findHeadingSection(md, /MONDAY: SPEED INTERVALS/i),
-            findHeadingSection(md, /TUESDAY: EASY RUN/i),
-            findHeadingSection(md, /WEDNESDAY: TEMPO\/THRESHOLD RUN/i),
-            findHeadingSection(md, /THURSDAY: EASY RUN OR REST/i),
-            findHeadingSection(md, /FRIDAY: EASY RUN/i),
-            findHeadingSection(md, /SATURDAY: LONG RUN/i),
-            findHeadingSection(md, /SUNDAY: RECOVERY/i),
-            findHeadingSection(md, /WEEKLY VOLUME \(PHASE 3 OVERVIEW\)/i)
-        ]);
+    if (phaseFile === '04_Phase3_Peak_and_Taper.md') {
+        return (weekNum >= 22 && weekNum <= 30) ? md : '';
     }
-
-    if (phaseFile === '06_Phase4_Peak.md') {
-        if (weekNum === 38) return findHeadingSection(md, /WEEK 38: FORD 3-IN-1 HALF MARATHON/i);
-        if (weekNum === 39) return findHeadingSection(md, /WEEK 39: POST-FORD RECOVERY WEEK/i);
-        return combineSections([
-            findHeadingSection(md, /WEEKLY STRUCTURE \(WEEKS 37, 39-41\)/i),
-            findHeadingSection(md, /MONDAY: FAST INTERVALS/i),
-            findHeadingSection(md, /TUESDAY: EASY RUN/i),
-            findHeadingSection(md, /WEDNESDAY: RACE PACE TEMPO/i),
-            findHeadingSection(md, /THURSDAY: EASY RUN OR REST/i),
-            findHeadingSection(md, /FRIDAY: EASY RUN/i),
-            findHeadingSection(md, /SATURDAY: LONG RUN/i),
-            findHeadingSection(md, /SUNDAY: RECOVERY/i)
-        ]);
-    }
-
-    if (phaseFile === '07_Phase5_Taper_and_RaceDay.md') {
-        if (weekNum === 42) return findHeadingSection(md, /WEEK 42: FIRST TAPER WEEK/i);
-        if (weekNum === 43) return findHeadingSection(md, /WEEK 43: SECOND TAPER WEEK/i);
-        if (weekNum === 44) return combineSections([
-            findHeadingSection(md, /WEEK 44: RACE WEEK/i),
-            findHeadingSection(md, /SOWETO MARATHON - 21\.1KM/i)
-        ]);
-        return '';
-    }
-
     return '';
 }
 
@@ -7207,7 +7112,7 @@ async function loadMarkdownWeekInto(containerId, phaseFile, weekNum, includeToda
 
         const todayName = new Date().toLocaleDateString('en-US', { weekday: 'long' });
         let dayBlocks = parseDayBlocks(weekSection);
-        if (!dayBlocks.length && phaseFile === '03_Phase1_Foundation.md') {
+        if (!dayBlocks.length && phaseFile === '02_Phase1_Foundation.md') {
             dayBlocks = synthesizePhase1Days(weekSection, weekNum);
         }
         dayBlocks = applyTrainingStateAdjustments(dayBlocks, getTrainingState());
@@ -7282,42 +7187,42 @@ function showTodaysWorkout() {
 }
 
 function showWeekDetails(weekNum) {
-    currentPhaseFile = '03_Phase1_Foundation.md';
+    currentPhaseFile = '02_Phase1_Foundation.md';
     currentWeekNum = weekNum;
     setActiveWeekButton('#phase1', weekNum);
     const bridge = document.getElementById('phase1CatchupBridge');
     if (bridge) {
         bridge.style.display = (weekNum >= 4 && weekNum <= 7) ? 'block' : 'none';
     }
-    loadMarkdownWeekInto('weekDetailsContainer', '03_Phase1_Foundation.md', weekNum, false);
+    loadMarkdownWeekInto('weekDetailsContainer', '02_Phase1_Foundation.md', weekNum, false);
 }
 
 function showPhase2Week(weekNum) {
-    currentPhaseFile = '04_Phase2_Speed.md';
+    currentPhaseFile = '03_Phase2_Speed.md';
     currentWeekNum = weekNum;
     setActiveWeekButton('#phase2', weekNum);
-    loadMarkdownWeekInto('phase2WeekDetails', '04_Phase2_Speed.md', weekNum, false);
+    loadMarkdownWeekInto('phase2WeekDetails', '03_Phase2_Speed.md', weekNum, false);
 }
 
 function showPhase3Week(weekNum) {
-    currentPhaseFile = '05_Phase3_Build.md';
+    currentPhaseFile = '04_Phase3_Peak_and_Taper.md';
     currentWeekNum = weekNum;
     setActiveWeekButton('#phase3', weekNum);
-    loadMarkdownWeekInto('phase3WeekDetails', '05_Phase3_Build.md', weekNum, false);
+    loadMarkdownWeekInto('phase3WeekDetails', '04_Phase3_Peak_and_Taper.md', weekNum, false);
 }
 
 function showPhase4Week(weekNum) {
-    currentPhaseFile = '06_Phase4_Peak.md';
-    currentWeekNum = weekNum;
+    const container = document.getElementById('phase4WeekDetails');
+    if (!container) return;
     setActiveWeekButton('#phase4', weekNum);
-    loadMarkdownWeekInto('phase4WeekDetails', '06_Phase4_Peak.md', weekNum, false);
+    container.innerHTML = '<div class="info-box">Phase 4 is now included in Phase 3: Peak + Taper.</div>';
 }
 
 function showPhase5Week(weekNum) {
-    currentPhaseFile = '07_Phase5_Taper_and_RaceDay.md';
-    currentWeekNum = weekNum;
+    const container = document.getElementById('phase5WeekDetails');
+    if (!container) return;
     setActiveWeekButton('#phase5', weekNum);
-    loadMarkdownWeekInto('phase5WeekDetails', '07_Phase5_Taper_and_RaceDay.md', weekNum, false);
+    container.innerHTML = '<div class="info-box">Phase 5 is now included in Phase 3: Peak + Taper.</div>';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -7360,10 +7265,8 @@ document.addEventListener('DOMContentLoaded', function() {
     showPhase5Week(42);
 
     attachSwipeNavigation('weekDetailsContainer', 1, 12, showWeekDetails, function() { return getActiveWeekFromSection('#phase1', 1); });
-    attachSwipeNavigation('phase2WeekDetails', 13, 20, showPhase2Week, function() { return getActiveWeekFromSection('#phase2', 13); });
-    attachSwipeNavigation('phase3WeekDetails', 21, 36, showPhase3Week, function() { return getActiveWeekFromSection('#phase3', 21); });
-    attachSwipeNavigation('phase4WeekDetails', 37, 41, showPhase4Week, function() { return getActiveWeekFromSection('#phase4', 37); });
-    attachSwipeNavigation('phase5WeekDetails', 42, 44, showPhase5Week, function() { return getActiveWeekFromSection('#phase5', 42); });
+    attachSwipeNavigation('phase2WeekDetails', 13, 21, showPhase2Week, function() { return getActiveWeekFromSection('#phase2', 13); });
+    attachSwipeNavigation('phase3WeekDetails', 22, 30, showPhase3Week, function() { return getActiveWeekFromSection('#phase3', 22); });
 });
 
 const GROCERY_STORAGE_KEYS = {
