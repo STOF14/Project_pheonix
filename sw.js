@@ -1,6 +1,6 @@
 // 280 Days PWA Service Worker
 // Version — bump this to force cache refresh after updates
-const CACHE_VERSION = 'v5';
+const CACHE_VERSION = 'v6';
 const CACHE_NAME = '280days-' + CACHE_VERSION;
 
 // Files to cache for offline use
