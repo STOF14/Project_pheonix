@@ -1598,421 +1598,32 @@
 
             <!-- Overview Section -->
             <section id="overview" class="content-section active">
-                <h1>THE 280 DAYS PROJECT</h1>
-                <p class="text-mono" style="font-size: 18px; margin-bottom: var(--spacing-xl);">FROM CAN'T RUN 3KM → HALF MARATHON FINISHER</p>
-                
-                <div class="info-box">
-                    <div class="info-box-title">Mission Statement</div>
-                    <p style="margin: 0;">Transform from sedentary student to half marathon finisher in 280 days. No shortcuts. No excuses. Just relentless progression and unbreakable discipline.</p>
-                </div>
-
-                <h2>The Journey</h2>
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Start Line</div>
-                        <div class="card-badge">15 FEB 2026</div>
-                    </div>
-                    <ul>
-                        <li>95kg bodyweight</li>
-                        <li>Can't run 3km without stopping</li>
-                        <li>2.73km in 20:12 with stops (7:24/km)</li>
-                        <li>Zero aerobic base</li>
-                        <li>Former sub-11 100m sprinter</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Finish Line</div>
-                        <div class="card-badge">29 NOV 2026</div>
-                    </div>
-                    <ul>
-                        <li>82-85kg bodyweight (10-13kg loss)</li>
-                        <li>Soweto Marathon 21.1km: 1:50-1:55</li>
-                        <li>5 races completed successfully</li>
-                        <li>Peak volume: 58-65km/week</li>
-                        <li>Unbreakable discipline established</li>
-                    </ul>
-                </div>
-
-                <h2>5-Phase System</h2>
-                <div class="week-schedule">
-                    <div class="day-card" onclick="showSection('phase0')">
-                        <div class="day-header">
-                            <span>PHASE 0</span>
-                            <span>2 WEEKS</span>
-                        </div>
-                        <div class="day-title">Pre-Launch</div>
-                        <div class="day-detail">Setup systems, baseline measurements, mental preparation</div>
-                    </div>
-                    <div class="day-card" onclick="showSection('phase1')">
-                        <div class="day-header">
-                            <span>PHASE 1</span>
-                            <span>12 WEEKS</span>
-                        </div>
-                        <div class="day-title">75 To Runner</div>
-                        <div class="day-detail">Build base, lose 5-7kg, 16km long run, establish habits</div>
-                    </div>
-                    <div class="day-card" onclick="showSection('phase2')">
-                        <div class="day-header">
-                            <span>PHASE 2</span>
-                            <span>8 WEEKS</span>
-                        </div>
-                        <div class="day-title">Speed Intro</div>
-                        <div class="day-detail">Intervals, tempo runs, 20km long run, sub-24 5K</div>
-                    </div>
-                    <div class="day-card" onclick="showSection('phase3')">
-                        <div class="day-header">
-                            <span>PHASE 3</span>
-                            <span>16 WEEKS</span>
-                        </div>
-                        <div class="day-title">Build Phase</div>
-                        <div class="day-detail">Peak volume 65km, 22km long run, 3 races</div>
-                    </div>
-                    <div class="day-card" onclick="showSection('phase4')">
-                        <div class="day-header">
-                            <span>PHASE 4</span>
-                            <span>5 WEEKS</span>
-                        </div>
-                        <div class="day-title">Peak Phase</div>
-                        <div class="day-detail">Ford dress rehearsal, final peak runs, race pace mastery</div>
-                    </div>
-                    <div class="day-card" onclick="showSection('phase5')">
-                        <div class="day-header">
-                            <span>PHASE 5</span>
-                            <span>3 WEEKS</span>
-                        </div>
-                        <div class="day-title">Taper + Race</div>
-                        <div class="day-detail">Fresh legs, carb loading, RACE DAY execution</div>
-                    </div>
-                </div>
-
-                <h2>Race Calendar 2026</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Race</th>
-                            <th>Distance</th>
-                            <th>Goal Time</th>
-                            <th>Purpose</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-mono">23 AUG</td>
-                            <td>Absa Tshwane 10K</td>
-                            <td>10km</td>
-                            <td>Sub-60min</td>
-                            <td>First race experience</td>
-                        </tr>
-                        <tr>
-                            <td class="text-mono">05 SEP</td>
-                            <td>Brooklyn 10K</td>
-                            <td>10km</td>
-                            <td>Sub-52min</td>
-                            <td>Prove improvement</td>
-                        </tr>
-                        <tr>
-                            <td class="text-mono">16 SEP</td>
-                            <td>Tuks Night Race</td>
-                            <td>5km</td>
-                            <td>Sub-22min</td>
-                            <td>Speed test</td>
-                        </tr>
-                        <tr>
-                            <td class="text-mono">26 SEP</td>
-                            <td>Ford Half Marathon</td>
-                            <td>21.1km</td>
-                            <td>1:58-2:03</td>
-                            <td>Dress rehearsal</td>
-                        </tr>
-                        <tr style="background: var(--red); color: var(--white);">
-                            <td class="text-mono">29 NOV</td>
-                            <td><strong>SOWETO MARATHON</strong></td>
-                            <td>21.1km</td>
-                            <td><strong>1:50-1:55</strong></td>
-                            <td><strong>GOAL RACE</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="overviewMarkdown" class="markdown-content"></div>
             </section>
 
             <!-- Profile Section -->
             <section id="profile" class="content-section">
-                <h1>YOUR PROFILE</h1>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Current Stats</div>
-                        <div class="card-badge">START</div>
-                    </div>
-                    <table style="margin: 0;">
-                        <tr>
-                            <td><strong>Age</strong></td>
-                            <td>20 years</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Weight</strong></td>
-                            <td>95kg</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Height</strong></td>
-                            <td>1.72m</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Current Fitness</strong></td>
-                            <td>2.73km in 20:12 with stops (7:24/km pace)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Background</strong></td>
-                            <td>Sub-11 100m sprinter (2023)</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <h2>Equipment & Resources</h2>
-                <div class="card">
-                    <div class="card-title">Available</div>
-                    <ul style="margin-bottom: 0;">
-                        <li><strong>Gym:</strong> Virgin Active (fully equipped)</li>
-                        <li><strong>Track:</strong> LC de Villiers (1.8km from apartment)</li>
-                        <li><strong>Shoes:</strong> Adidas Adizero SL (budget R2,000 for new shoes by July)</li>
-                        <li><strong>Budget:</strong> R1,400/month food</li>
-                    </ul>
-                </div>
-
-                <h2>Schedule Constraints</h2>
-                <div class="week-schedule">
-                    <div class="day-card">
-                        <div class="day-title">Classes</div>
-                        <div class="day-detail">Start 7:30am some days</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-title">Tuesday</div>
-                        <div class="day-detail">Christian meeting 18:00-20:00</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-title">Thursday</div>
-                        <div class="day-detail">Christian meeting 17:30-19:00</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-title">Exams</div>
-                        <div class="day-detail">June 1-13, 2026</div>
-                    </div>
-                </div>
-
-                <h2>Strengths & Weaknesses</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
-                    <div class="card" style="background: var(--black); color: var(--white);">
-                        <div class="card-title">Strengths</div>
-                        <ul style="margin: 0;">
-                            <li>Elite sprint genetics (sub-11 100m)</li>
-                            <li>10/10 commitment level</li>
-                            <li>20 years old (recovery advantage)</li>
-                            <li>Access to quality facilities</li>
-                        </ul>
-                    </div>
-                    <div class="card" style="background: var(--red); color: var(--white); border-color: var(--red);">
-                        <div class="card-title">Weaknesses</div>
-                        <ul style="margin: 0;">
-                            <li>Weak hamstrings (injury risk)</li>
-                            <li>Zero aerobic base</li>
-                            <li>Sedentary lifestyle</li>
-                            <li>No recent training consistency</li>
-                        </ul>
-                    </div>
-                </div>
+                <div id="profileMarkdown" class="markdown-content"></div>
             </section>
 
             <!-- Phase 0 Section -->
             <section id="phase0" class="content-section">
                 <h1>PHASE 0: PRE-LAUNCH</h1>
-                <p class="text-mono" style="font-size: 16px;">NOW - FEBRUARY 14, 2026 (2 WEEKS)</p>
-
+                <p class="text-mono" style="font-size: 16px;">RESET NOTE</p>
                 <div class="info-box">
-                    <div class="info-box-title">Goals</div>
-                    <ol style="margin: 0;">
-                        <li>Build minimal movement base</li>
-                        <li>Set up tracking systems</li>
-                        <li>Establish meal prep routine</li>
-                        <li>Create content infrastructure</li>
-                        <li>Mental preparation</li>
-                    </ol>
+                    <div class="info-box-title">Updated Start</div>
+                    <div id="phase0Markdown" class="markdown-content"></div>
                 </div>
-
-                <h2>Week 1-2 Training</h2>
-                <div class="week-schedule">
-                    <div class="day-card">
-                        <div class="day-header"><span>MON/WED/FRI</span></div>
-                        <div class="day-title">Easy Run/Walk</div>
-                        <div class="day-detail">6:00am • 3km easy run/walk • No pressure on pace</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-header"><span>TUE/THU</span></div>
-                        <div class="day-title">Recovery Walk</div>
-                        <div class="day-detail">Evening • 20-30min walk around campus</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-header"><span>SATURDAY</span></div>
-                        <div class="day-title">Long Walk/Run</div>
-                        <div class="day-detail">8:00am • 4-5km run/walk • Slightly longer</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-header"><span>SUNDAY</span></div>
-                        <div class="day-title">Complete Rest</div>
-                        <div class="day-detail">Full recovery day</div>
-                    </div>
-                </div>
-
-                <h2>Critical Setup Tasks</h2>
-                <div class="card">
-                    <div class="card-title">Complete by Feb 14</div>
-                    <ul class="checklist" style="margin: 0;">
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Download Strava app and create account</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Download YouVersion Bible App</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Complete shopping trip (see nutrition plan)</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Buy 7-10 meal prep containers</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Test batch cooking session</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Get 3-4L water bottle</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Choose progress photo spot</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Take baseline measurements and photos</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Buy foam roller</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Write down your WHY</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Tell accountability partner your goal</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span>Read through entire plan once</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <h2>Financial Planning</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Cost</th>
-                            <th>When</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Soccer ball</td>
-                            <td>~R100</td>
-                            <td>Now</td>
-                        </tr>
-                        <tr>
-                            <td>Measuring tape</td>
-                            <td>~R30</td>
-                            <td>Now</td>
-                        </tr>
-                        <tr>
-                            <td>Foam roller</td>
-                            <td>~R200</td>
-                            <td>Now</td>
-                        </tr>
-                        <tr>
-                            <td>New running shoes</td>
-                            <td>R2,000</td>
-                            <td>July-August</td>
-                        </tr>
-                        <tr>
-                            <td>Race entry fees (total)</td>
-                            <td>~R1,300</td>
-                            <td>Save R150/month</td>
-                        </tr>
-                    </tbody>
-                </table>
             </section>
 
             <!-- Phase 1 Section -->
             <section id="phase1" class="content-section">
                 <h1>PHASE 1: FOUNDATION BUILD</h1>
                 <p class="text-mono" style="font-size: 16px;">WEEKS 1-12 (MAY 4 - JULY 26, 2026)</p>
-                <p class="text-mono" style="font-size: 18px; font-weight: 700; color: var(--red);">BASE BUILDING BLOCK</p>
-
                 <div class="info-box">
-                    <div class="info-box-title">Primary Goals</div>
-                    <ol style="margin: 0;">
-                        <li>Complete 75-day accountability challenge</li>
-                        <li>Build aerobic base from scratch</li>
-                        <li>Lose 5-7kg (95kg → 88-90kg)</li>
-                        <li>Run 16km long run continuously</li>
-                        <li>Strengthen weak hamstrings</li>
-                        <li>Establish unbreakable discipline</li>
-                    </ol>
+                    <div class="info-box-title">Phase 1 Plan</div>
+                    <p style="margin: 0;">Week details are pulled directly from the Phase 1 markdown plan.</p>
                 </div>
-
-                <h2>The 75 To Runner Rules</h2>
-                <div class="card">
-                    <div class="card-title">Daily Non-Negotiables (Days 1-75)</div>
-                    <ul class="checklist" style="margin: 0;">
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span><strong>One workout minimum</strong> (45min+)</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span><strong>1 gallon water</strong> (3.8L)</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span><strong>No junk food / No takeaways</strong></span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span><strong>Bible reading</strong> (Genesis to Revelation in 75 days)</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span><strong>Daily progress photo</strong> (same spot, same pose)</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span><strong>Track everything</strong> (log in Strava + notes)</span>
-                        </li>
-                        <li class="checklist-item">
-                            <div class="checkbox" onclick="toggleCheck(this)"></div>
-                            <span><strong>One mandatory rest day per week</strong> (Sunday)</span>
-                        </li>
-                    </ul>
-                    <p style="margin-top: var(--spacing-md); margin-bottom: 0; font-size: 13px;"><strong>Miss ANY requirement:</strong> Add 1 day to the 75</p>
-                </div>
-
                 <h2>Week Selector</h2>
                 <div class="week-selector">
                     <button class="week-btn active" onclick="showWeekDetails(1)">Week 1</button>
@@ -2028,149 +1639,17 @@
                     <button class="week-btn" onclick="showWeekDetails(11)">Week 11</button>
                     <button class="week-btn" onclick="showWeekDetails(12)">Week 12</button>
                 </div>
-
-                <div class="card" id="phase1CatchupBridge" style="border-left: 4px solid var(--red); display: none;">
-                    <div class="card-header">
-                        <div class="card-title">Catch-Up Long Run Bridge</div>
-                        <div class="card-badge">OPTIONAL</div>
-                    </div>
-                    <p style="margin-bottom: var(--spacing-sm);">Use this if early long runs were missed. Next long run is <strong>Week 4: 6km easy</strong>. Do not try to make up missed runs in one week.</p>
-                    <table style="margin: 0;">
-                        <thead>
-                            <tr>
-                                <th>Calendar Week</th>
-                                <th>Saturday Long Run</th>
-                                <th>Guidance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Week 4</td>
-                                <td><strong>6km</strong></td>
-                                <td>Easy conversational pace</td>
-                            </tr>
-                            <tr>
-                                <td>Week 5</td>
-                                <td><strong>7km</strong></td>
-                                <td>Stay controlled, no racing</td>
-                            </tr>
-                            <tr>
-                                <td>Week 6</td>
-                                <td><strong>8km</strong></td>
-                                <td>Back to confidence volume</td>
-                            </tr>
-                            <tr>
-                                <td>Week 7+</td>
-                                <td><strong>Resume plan</strong></td>
-                                <td>Continue normal progression</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Week Details Container -->
                 <div id="weekDetailsContainer"></div>
-
-                <h2>Mileage Progression</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Week</th>
-                            <th>Mon</th>
-                            <th>Wed</th>
-                            <th>Fri</th>
-                            <th>Sat Long</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-mono">1-4</td>
-                            <td>3-4km</td>
-                            <td>3-4km</td>
-                            <td>3-4.5km</td>
-                            <td>5-8km</td>
-                            <td>18-28km</td>
-                        </tr>
-                        <tr>
-                            <td class="text-mono">5-8</td>
-                            <td>5-6km</td>
-                            <td>5-6km</td>
-                            <td>5-6km</td>
-                            <td>9-12km</td>
-                            <td>30-40km</td>
-                        </tr>
-                        <tr>
-                            <td class="text-mono">9-11</td>
-                            <td>6-7km</td>
-                            <td>6km</td>
-                            <td>6km</td>
-                            <td>13-16km</td>
-                            <td>43-48km</td>
-                        </tr>
-                        <tr style="background: var(--red); color: var(--white);">
-                            <td class="text-mono">12</td>
-                            <td colspan="4">RECOVERY WEEK</td>
-                            <td>11-12km</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h2>Key Exercises</h2>
-                <div class="card" style="background: var(--black); color: var(--white);">
-                    <div class="card-title">Nordic Curls - INJURY INSURANCE</div>
-                    <p style="margin-bottom: var(--spacing-sm);">Your #1 injury prevention priority for weak hamstrings</p>
-                    <p><strong>Progression:</strong></p>
-                    <ul style="margin: 0;">
-                        <li>Week 1: 3 sets x 3-4 reps (5sec eccentric lower)</li>
-                        <li>Week 4: 3 sets x 6 reps</li>
-                        <li>Week 8: 3 sets x 7-8 reps</li>
-                        <li>Week 11: 3 sets x 8-10 reps</li>
-                    </ul>
-                </div>
-
-                <h2>Phase 1 Summary</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
-                    <div class="card">
-                        <div class="card-title">Physical Gains</div>
-                        <ul style="margin: 0; font-size: 13px;">
-                            <li>16km long run capability</li>
-                            <li>48km weekly volume</li>
-                            <li>5-7kg weight loss</li>
-                            <li>Estimated 5km: 27-28min</li>
-                            <li>Strong hamstrings (3x10 Nordics)</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="card-title">Mental Gains</div>
-                        <ul style="margin: 0; font-size: 13px;">
-                            <li>75 days of discipline</li>
-                            <li>Automatic habits</li>
-                            <li>Identity shift to "runner"</li>
-                            <li>"I can do hard things"</li>
-                            <li>Meal prep mastered</li>
-                        </ul>
-                    </div>
-                </div>
             </section>
 
             <!-- Phase 2 Section -->
             <section id="phase2" class="content-section">
                 <h1>PHASE 2: SPEED INTRODUCTION</h1>
                 <p class="text-mono" style="font-size: 16px;">WEEKS 13-21 (JULY 27 - SEPTEMBER 27, 2026)</p>
-
                 <div class="info-box">
-                    <div class="info-box-title">Primary Goals</div>
-                    <ol style="margin: 0;">
-                        <li>Introduction of SPEED WORK (intervals on Monday)</li>
-                        <li>Introduction of TEMPO RUNS (Wednesday)</li>
-                        <li>Extend long run to 20km</li>
-                        <li>5km time: Sub-24:00 (4:48/km average)</li>
-                        <li>Weight: 85-87kg (3-5kg additional loss)</li>
-                        <li>Navigate exam period (June 1-13)</li>
-                    </ol>
+                    <div class="info-box-title">Phase 2 Plan</div>
+                    <p style="margin: 0;">Week details are pulled directly from the Phase 2 markdown plan.</p>
                 </div>
-
                 <h2>Week Selector</h2>
                 <div class="week-selector">
                     <button class="week-btn active" onclick="showPhase2Week(13)">Week 13</button>
@@ -2183,49 +1662,17 @@
                     <button class="week-btn" onclick="showPhase2Week(20)">Week 20</button>
                     <button class="week-btn" onclick="showPhase2Week(21)">Week 21</button>
                 </div>
-
                 <div id="phase2WeekDetails"></div>
-
-                <h2>Phase 2 Summary</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
-                    <div class="card">
-                        <div class="card-title">Physical Gains</div>
-                        <ul style="margin: 0; font-size: 13px;">
-                            <li>800m repeats at 3:30-3:35 pace</li>
-                            <li>Tempo: Hold 5:00/km for 6km</li>
-                            <li>Long run: Extended to 20km</li>
-                            <li>5km time: Sub-24:00</li>
-                            <li>Weekly volume: 45-52km</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="card-title">Mental Gains</div>
-                        <ul style="margin: 0; font-size: 13px;">
-                            <li>Survived exam period</li>
-                            <li>Learned to embrace speed work</li>
-                            <li>Built confidence in pacing</li>
-                            <li>Maintained consistency</li>
-                        </ul>
-                    </div>
-                </div>
             </section>
 
             <!-- Phase 3 Section -->
             <section id="phase3" class="content-section">
                 <h1>PHASE 3: PEAK + TAPER</h1>
                 <p class="text-mono" style="font-size: 16px;">WEEKS 22-30 (SEPTEMBER 28 - NOVEMBER 29, 2026)</p>
-
                 <div class="info-box">
-                    <div class="info-box-title">Primary Goals</div>
-                    <ol style="margin: 0;">
-                        <li>Build to peak weekly volume (58-65km)</li>
-                        <li>Extend long run to 22km (longer than race distance)</li>
-                        <li>Race 3 times (August 10K, September 10K, September 5K)</li>
-                        <li>Prove you can hold goal race pace for extended periods</li>
-                        <li>Lose final 2-3kg (85-87kg → 82-85kg goal weight)</li>
-                    </ol>
+                    <div class="info-box-title">Phase 3 Plan</div>
+                    <p style="margin: 0;">Week details are pulled directly from the Phase 3 markdown plan.</p>
                 </div>
-
                 <h2>Week Selector</h2>
                 <div class="week-selector">
                     <button class="week-btn active" onclick="showPhase3Week(22)">Week 22</button>
@@ -2238,80 +1685,13 @@
                     <button class="week-btn" onclick="showPhase3Week(29)">Week 29</button>
                     <button class="week-btn" onclick="showPhase3Week(30)">Week 30</button>
                 </div>
-
                 <div id="phase3WeekDetails"></div>
-
-                <h2>Race Weeks</h2>
-                <div class="week-schedule">
-                    <div class="day-card" style="background: var(--red); color: var(--white);">
-                        <div class="day-header">
-                            <span>WEEK 32</span>
-                            <span>23 AUG</span>
-                        </div>
-                        <div class="day-title">Absa Tshwane 10K</div>
-                        <div class="day-detail">Goal: Sub-60min (first race ever!)</div>
-                    </div>
-                    <div class="day-card" style="background: var(--red); color: var(--white);">
-                        <div class="day-header">
-                            <span>WEEK 35</span>
-                            <span>05 SEP</span>
-                        </div>
-                        <div class="day-title">Brooklyn 10K</div>
-                        <div class="day-detail">Goal: Sub-52min (8min improvement)</div>
-                    </div>
-                    <div class="day-card" style="background: var(--red); color: var(--white);">
-                        <div class="day-header">
-                            <span>WEEK 36</span>
-                            <span>16 SEP</span>
-                        </div>
-                        <div class="day-title">Tuks Night 5K</div>
-                        <div class="day-detail">Goal: Sub-22min (speed test)</div>
-                    </div>
-                </div>
-
-                <h2>Phase 3 Summary</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
-                    <div class="card">
-                        <div class="card-title">Physical Gains</div>
-                        <ul style="margin: 0; font-size: 13px;">
-                            <li>Peak volume: 58-65km/week</li>
-                            <li>Long run: 22km completed</li>
-                            <li>Tempo: 14km @ 5:15/km</li>
-                            <li>Speed: 800m at 3:25</li>
-                            <li>3 races completed successfully</li>
-                            <li>Weight: 82-85kg achieved</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="card-title">Racing Experience</div>
-                        <ul style="margin: 0; font-size: 13px;">
-                            <li>August 10K: Sub-60min ✓</li>
-                            <li>September 10K: Sub-52min ✓</li>
-                            <li>September 5K: Sub-22min ✓</li>
-                            <li>Learned pacing strategies</li>
-                            <li>Mastered race day routines</li>
-                        </ul>
-                    </div>
-                </div>
             </section>
 
             <!-- Phase 4 Section -->
             <section id="phase4" class="content-section">
                 <h1>PHASE 4: PEAK PHASE</h1>
-                <p class="text-mono" style="font-size: 16px;">WEEKS 37-41 (OCTOBER 11 - NOVEMBER 8, 2026)</p>
-
-                <div class="info-box">
-                    <div class="info-box-title">Primary Goals</div>
-                    <ol style="margin: 0;">
-                        <li>Race Ford Half Marathon as dress rehearsal (Week 38)</li>
-                        <li>Final peak long runs (22-23km)</li>
-                        <li>Prove race pace for extended distances (12-14km @ 5:15/km)</li>
-                        <li>Sharpen speed (fast 800m repeats)</li>
-                        <li>Build confidence: "I'm ready for Soweto"</li>
-                    </ol>
-                </div>
-
-                <h2>Week Selector</h2>
+                <p class="text-mono" style="font-size: 16px;">NOW INCLUDED IN PHASE 3</p>
                 <div class="week-selector">
                     <button class="week-btn active" onclick="showPhase4Week(37)">Week 37</button>
                     <button class="week-btn" onclick="showPhase4Week(38)">Week 38</button>
@@ -2319,103 +1699,19 @@
                     <button class="week-btn" onclick="showPhase4Week(40)">Week 40</button>
                     <button class="week-btn" onclick="showPhase4Week(41)">Week 41</button>
                 </div>
-
                 <div id="phase4WeekDetails"></div>
-
-                <div class="card" style="background: var(--black); color: var(--white); margin-top: var(--spacing-xl);">
-                    <div class="card-header">
-                        <div class="card-title">Week 38: Ford Half Marathon</div>
-                        <div class="card-badge" style="background: var(--red);">26 SEP</div>
-                    </div>
-                    <p><strong>Distance:</strong> 21.1km<br>
-                    <strong>Goal:</strong> 1:58-2:03 (5:35-5:48/km average)<br>
-                    <strong>Effort:</strong> 80% - CONTROLLED, NOT ALL-OUT</p>
-                    <p style="margin: 0;"><strong>Purpose:</strong> This is your DRESS REHEARSAL. Test everything: breakfast, warm-up, pacing, aid stations, gear. Learn what 21km feels like. This is NOT your goal race.</p>
-                </div>
-
-                <h2>Phase 4 Summary</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
-                    <div class="card">
-                        <div class="card-title">Physical</div>
-                        <ul style="margin: 0; font-size: 13px;">
-                            <li>Raced Ford Half: 1:58-2:03</li>
-                            <li>Final peak: 22-23km runs</li>
-                            <li>Race pace: 14km @ 5:15/km</li>
-                            <li>Speed: 800m at 3:25</li>
-                            <li>Weight maintained: 82-85kg</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="card-title">Mental</div>
-                        <ul style="margin: 0; font-size: 13px;">
-                            <li>4 races completed (10K, 10K, 5K, Half)</li>
-                            <li>Learned from Ford rehearsal</li>
-                            <li>Know what to expect at Soweto</li>
-                            <li>Confidence: "I'm ready"</li>
-                        </ul>
-                    </div>
-                </div>
             </section>
 
             <!-- Phase 5 Section -->
             <section id="phase5" class="content-section">
                 <h1>PHASE 5: TAPER + RACE</h1>
-                <p class="text-mono" style="font-size: 16px;">WEEKS 42-44 (NOVEMBER 9 - NOVEMBER 29, 2026)</p>
-
-                <div class="info-box">
-                    <div class="info-box-title">Primary Goals</div>
-                    <ol style="margin: 0;">
-                        <li>Reduce volume while maintaining intensity</li>
-                        <li>Arrive at start line fresh, rested, eager</li>
-                        <li>Trust the training (no panic workouts)</li>
-                        <li>Perfect all race-day logistics</li>
-                        <li>Execute race plan flawlessly</li>
-                        <li>FINISH SOWETO MARATHON 21.1KM IN 1:50-1:55</li>
-                    </ol>
-                </div>
-
-                <h2>Week Selector</h2>
+                <p class="text-mono" style="font-size: 16px;">NOW INCLUDED IN PHASE 3</p>
                 <div class="week-selector">
                     <button class="week-btn active" onclick="showPhase5Week(42)">Week 42</button>
                     <button class="week-btn" onclick="showPhase5Week(43)">Week 43</button>
                     <button class="week-btn" onclick="showPhase5Week(44)">Week 44</button>
                 </div>
-
                 <div id="phase5WeekDetails"></div>
-
-                <div class="card" style="background: var(--red); color: var(--white); margin-top: var(--spacing-xl);">
-                    <div class="card-header">
-                        <div class="card-title">🔥 RACE DAY: SOWETO MARATHON</div>
-                        <div class="card-badge" style="background: var(--black);">29 NOV</div>
-                    </div>
-                    <p><strong>Distance:</strong> 21.1km<br>
-                    <strong>Goal:</strong> 1:50-1:55 (5:12-5:28/km average)<br>
-                    <strong>Effort:</strong> 100% - THIS IS THE GOAL RACE</p>
-                    <p style="margin: 0;"><strong>280 days of training led to this moment.</strong> Execute the plan. Start slow, finish strong. Trust the training. Become a marathon finisher.</p>
-                </div>
-
-                <h2>Taper Philosophy</h2>
-                <div class="card">
-                    <div class="card-title">What TO Do</div>
-                    <ul style="margin: 0;">
-                        <li>✓ Trust the process (9 months is enough)</li>
-                        <li>✓ Reduce volume ~40-50% from peak</li>
-                        <li>✓ Keep short, sharp speed work</li>
-                        <li>✓ Maintain normal routine until final week</li>
-                        <li>✓ Focus on sleep, hydration, mental prep</li>
-                        <li>✓ Visualize success daily</li>
-                    </ul>
-                </div>
-
-                <div class="card" style="background: var(--black); color: var(--white);">
-                    <div class="card-title">What NOT To Do</div>
-                    <ul style="margin: 0;">
-                        <li>✗ Panic training: "I need one more long run"</li>
-                        <li>✗ Complete rest: "I'll stop running entirely"</li>
-                        <li>✗ Changing routine: "Let me try this new thing"</li>
-                        <li>✗ Overeating: "Carb load for 3 weeks"</li>
-                    </ul>
-                </div>
             </section>
             <!-- Checklist Section -->
             <section id="checklist" class="content-section">
@@ -2570,112 +1866,8 @@
             <section id="races" class="content-section">
                 <h1>RACE CALENDAR</h1>
                 <p class="text-mono" style="font-size: 16px;">5-RACE PROGRESSION TO SOWETO</p>
-
-                <div class="card" style="background: var(--gray-100);">
-                    <div class="card-header">
-                        <div class="card-title">Race 1: Absa Tshwane 10K</div>
-                        <div class="card-badge">23 AUG</div>
-                    </div>
-                    <p><strong>Distance:</strong> 10km<br>
-                    <strong>Goal:</strong> Sub-60 minutes (6:00/km average)<br>
-                    <strong>Purpose:</strong> First race ever - learn the experience</p>
-                    <p style="margin: 0;"><strong>Key Focus:</strong> Don't go out too fast, learn aid stations, finish strong</p>
-                </div>
-
-                <div class="card" style="background: var(--gray-100);">
-                    <div class="card-header">
-                        <div class="card-title">Race 2: Brooklyn Road Race 10K</div>
-                        <div class="card-badge">05 SEP</div>
-                    </div>
-                    <p><strong>Distance:</strong> 10km<br>
-                    <strong>Goal:</strong> Sub-52 minutes (5:12/km average)<br>
-                    <strong>Purpose:</strong> Prove improvement (8min faster than Race 1)</p>
-                    <p style="margin: 0;"><strong>Key Focus:</strong> Better pacing, controlled start, strong finish</p>
-                </div>
-
-                <div class="card" style="background: var(--gray-100);">
-                    <div class="card-header">
-                        <div class="card-title">Race 3: Tuks Night Race 5K</div>
-                        <div class="card-badge">16 SEP</div>
-                    </div>
-                    <p><strong>Distance:</strong> 5km<br>
-                    <strong>Goal:</strong> Sub-22 minutes (4:24/km average)<br>
-                    <strong>Purpose:</strong> Speed test, night race experience, campus pride</p>
-                    <p style="margin: 0;"><strong>Key Focus:</strong> Fast start, maintain speed, sprint finish</p>
-                </div>
-
-                <div class="card" style="background: var(--gray-100);">
-                    <div class="card-header">
-                        <div class="card-title">Race 4: Ford Half Marathon</div>
-                        <div class="card-badge" style="background: var(--gray-800);">26 SEP</div>
-                    </div>
-                    <p><strong>Distance:</strong> 21.1km<br>
-                    <strong>Goal:</strong> 1:58-2:03 (5:35-5:48/km average)<br>
-                    <strong>Effort:</strong> 80% - CONTROLLED, NOT ALL-OUT<br>
-                    <strong>Purpose:</strong> 🎯 DRESS REHEARSAL FOR SOWETO</p>
-                    <p style="margin: 0;"><strong>Key Focus:</strong> Test everything - breakfast, warm-up, pacing, aid stations, gear</p>
-                </div>
-
-                <div class="card" style="background: var(--red); color: var(--white); border-color: var(--red);">
-                    <div class="card-header">
-                        <div class="card-title">🔥 RACE 5: SOWETO MARATHON 🔥</div>
-                        <div class="card-badge" style="background: var(--black);">29 NOV</div>
-                    </div>
-                    <p><strong>Distance:</strong> 21.1km<br>
-                    <strong>Goal:</strong> 1:50-1:55 (5:12-5:28/km average)<br>
-                    <strong>Effort:</strong> 100% - THIS IS THE GOAL RACE<br>
-                    <strong>Purpose:</strong> 280 DAYS LED TO THIS MOMENT</p>
-                    <p style="margin: 0;"><strong>Pacing Strategy:</strong></p>
-                    <ul style="margin: 0;">
-                        <li>KM 0-5: 5:30-5:40/km (disciplined start)</li>
-                        <li>KM 5-10: 5:20-5:28/km (settle into goal pace)</li>
-                        <li>KM 10-15: 5:15-5:22/km (prove your training)</li>
-                        <li>KM 15-18: 5:12-5:18/km (the grind)</li>
-                        <li>KM 18-20: 5:10-5:15/km (dig deep)</li>
-                        <li>KM 20-21.1: ALL-OUT SPRINT FINISH</li>
-                    </ul>
-                </div>
-
-                <h2>Race Week Protocol</h2>
-                <div class="week-schedule">
-                    <div class="day-card">
-                        <div class="day-header"><span>MONDAY</span></div>
-                        <div class="day-title">Speed Reminder</div>
-                        <div class="day-detail">Short fast intervals - remind legs of speed</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-header"><span>TUESDAY</span></div>
-                        <div class="day-title">Easy Run</div>
-                        <div class="day-detail">6km conversational pace</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-header"><span>WEDNESDAY</span></div>
-                        <div class="day-title">Tempo/Strides</div>
-                        <div class="day-detail">Light tempo or strides to feel sharp</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-header"><span>THURSDAY</span></div>
-                        <div class="day-title">Complete Rest</div>
-                        <div class="day-detail">No running, hydrate, sleep, mental prep</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-header"><span>FRIDAY</span></div>
-                        <div class="day-title">Shakeout</div>
-                        <div class="day-detail">3km easy + strides to loosen legs</div>
-                    </div>
-                    <div class="day-card">
-                        <div class="day-header"><span>SATURDAY</span></div>
-                        <div class="day-title">Shakeout/Rest</div>
-                        <div class="day-detail">2km shakeout jog OR complete rest</div>
-                    </div>
-                    <div class="day-card" style="background: var(--red); color: var(--white);">
-                        <div class="day-header"><span>SUNDAY</span></div>
-                        <div class="day-title">🔥 RACE DAY</div>
-                        <div class="day-detail">Execute the plan. Become a finisher.</div>
-                    </div>
-                </div>
-
-                <h2>Detailed Race Day Protocols</h2>
+                <div id="racesMarkdown" class="markdown-content"></div>
+                <h2>Race Protocols</h2>
                 <div class="week-selector">
                     <button class="week-btn active" onclick="showRaceProtocol(1)">Race 1: Tshwane 10K</button>
                     <button class="week-btn" onclick="showRaceProtocol(2)">Race 2: Brooklyn 10K</button>
@@ -2683,106 +1875,7 @@
                     <button class="week-btn" onclick="showRaceProtocol(4)">Race 4: Ford Half</button>
                     <button class="week-btn" onclick="showRaceProtocol(5)">Race 5: Soweto</button>
                 </div>
-
                 <div id="raceProtocolDetails"></div>
-
-                <h2>Universal Race Day Checklist</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Time Before Race</th>
-                            <th>Action</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Night Before</td>
-                            <td>Lay out everything</td>
-                            <td>Race kit, shoes, number, watch, water</td>
-                        </tr>
-                        <tr>
-                            <td>Night Before</td>
-                            <td>Bed by 9pm</td>
-                            <td>Set 3 alarms, expect poor sleep (normal)</td>
-                        </tr>
-                        <tr>
-                            <td>2-2.5 hours</td>
-                            <td>Wake up</td>
-                            <td>Bathroom, light on, move slowly</td>
-                        </tr>
-                        <tr>
-                            <td>1.5-2 hours</td>
-                            <td>Breakfast</td>
-                            <td>Same as training runs - nothing new</td>
-                        </tr>
-                        <tr>
-                            <td>1 hour</td>
-                            <td>Arrive at venue</td>
-                            <td>Early parking, scout layout, bathroom</td>
-                        </tr>
-                        <tr>
-                            <td>30-45 min</td>
-                            <td>Warm-up</td>
-                            <td>10min jog, dynamic stretches, 4x100m strides</td>
-                        </tr>
-                        <tr>
-                            <td>15 min</td>
-                            <td>Get into corral</td>
-                            <td>Mid-pack position, deep breathing</td>
-                        </tr>
-                        <tr>
-                            <td>5 min</td>
-                            <td>Final prep</td>
-                            <td>Shake out legs, positive self-talk</td>
-                        </tr>
-                        <tr style="background: var(--red); color: var(--white);">
-                            <td>GO TIME</td>
-                            <td>START CONSERVATIVE</td>
-                            <td>First km slower than goal pace</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h2>Pacing Strategy Guide</h2>
-                <div class="card" style="background: var(--black); color: var(--white);">
-                    <div class="card-title">The Golden Rule: Negative Splits</div>
-                    <p>Run the second half faster than the first half. This requires discipline to start SLOW.</p>
-                    <p style="margin-top: var(--spacing-md);"><strong>Why it works:</strong></p>
-                    <ul style="margin: 0;">
-                        <li>Conserves energy for when you need it</li>
-                        <li>Mentally easier (passing people vs getting passed)</li>
-                        <li>Prevents blowing up at 15km</li>
-                        <li>Proven strategy of elite runners</li>
-                    </ul>
-                </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
-                    <div class="card">
-                        <div class="card-title">What TO Do</div>
-                        <ul style="margin: 0;">
-                            <li>Start 10-15 sec/km SLOWER than goal pace</li>
-                            <li>Let people pass you early - that's okay</li>
-                            <li>Check watch every km, not every 100m</li>
-                            <li>Take water at every station (even just a sip)</li>
-                            <li>Focus on YOUR race, not others</li>
-                            <li>Pick up pace after halfway point</li>
-                            <li>Sprint the final 400m - leave nothing behind</li>
-                        </ul>
-                    </div>
-                    <div class="card" style="background: var(--red); color: var(--white);">
-                        <div class="card-title">What NOT To Do</div>
-                        <ul style="margin: 0;">
-                            <li>Go out with the fast starters (you'll die)</li>
-                            <li>Skip water stations ("I'll save time")</li>
-                            <li>Race against random people around you</li>
-                            <li>Panic if you're "behind pace" early</li>
-                            <li>Wear new shoes or new kit on race day</li>
-                            <li>Eat anything different from training</li>
-                            <li>Stay up late the night before</li>
-                        </ul>
-                    </div>
-                </div>
             </section>
 
             <!-- Race Countdown Section -->
@@ -2936,199 +2029,7 @@
             <section id="nutrition" class="content-section">
                 <h1>NUTRITION PLAN</h1>
                 <p class="text-mono" style="font-size: 16px;">R1,400/MONTH BUDGET</p>
-
-                <div class="info-box">
-                    <div class="info-box-title">Budget Breakdown</div>
-                    <p style="margin-bottom: var(--spacing-sm);">R1,400/month = R350/week</p>
-                    <ul style="margin: 0;">
-                        <li>Proteins: R550/month</li>
-                        <li>Starches: R250/month</li>
-                        <li>Dairy: R150/month</li>
-                        <li>Produce: R200/month</li>
-                        <li>Pantry: R200/month</li>
-                        <li>Snacks: R50/month</li>
-                    </ul>
-                </div>
-
-                <h2>Monthly Shopping List</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Cost</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td rowspan="6"><strong>Proteins</strong><br>R550</td>
-                            <td>Chicken portions (mixed)</td>
-                            <td>5kg</td>
-                            <td>R250</td>
-                        </tr>
-                        <tr>
-                            <td>Beef mince</td>
-                            <td>3kg</td>
-                            <td>R150</td>
-                        </tr>
-                        <tr>
-                            <td>Boerewors</td>
-                            <td>2kg</td>
-                            <td>R80</td>
-                        </tr>
-                        <tr>
-                            <td>Eggs</td>
-                            <td>60 count</td>
-                            <td>R90</td>
-                        </tr>
-                        <tr>
-                            <td>Hake/frozen fish</td>
-                            <td>2kg</td>
-                            <td>R100</td>
-                        </tr>
-                        <tr>
-                            <td>Ham/viennas</td>
-                            <td>Various</td>
-                            <td>R50</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="5"><strong>Starches</strong><br>R250</td>
-                            <td>Rice</td>
-                            <td>10kg</td>
-                            <td>R120</td>
-                        </tr>
-                        <tr>
-                            <td>Pasta</td>
-                            <td>3kg</td>
-                            <td>R60</td>
-                        </tr>
-                        <tr>
-                            <td>Potatoes</td>
-                            <td>10kg</td>
-                            <td>R70</td>
-                        </tr>
-                        <tr>
-                            <td>Oats</td>
-                            <td>2kg</td>
-                            <td>R40</td>
-                        </tr>
-                        <tr>
-                            <td>Bread</td>
-                            <td>Weekly</td>
-                            <td>Included</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2"><strong>Dairy</strong><br>R150</td>
-                            <td>Milk</td>
-                            <td>6L</td>
-                            <td>R90</td>
-                        </tr>
-                        <tr>
-                            <td>Cheese</td>
-                            <td>1kg</td>
-                            <td>R60</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="7"><strong>Produce</strong><br>R200</td>
-                            <td>Onions</td>
-                            <td>2kg</td>
-                            <td>R30</td>
-                        </tr>
-                        <tr>
-                            <td>Tomatoes</td>
-                            <td>2kg</td>
-                            <td>R40</td>
-                        </tr>
-                        <tr>
-                            <td>Carrots</td>
-                            <td>2kg</td>
-                            <td>R25</td>
-                        </tr>
-                        <tr>
-                            <td>Cabbage</td>
-                            <td>2 heads</td>
-                            <td>R30</td>
-                        </tr>
-                        <tr>
-                            <td>Bananas</td>
-                            <td>8kg</td>
-                            <td>R95</td>
-                        </tr>
-                        <tr>
-                            <td>Apples</td>
-                            <td>2kg</td>
-                            <td>R40</td>
-                        </tr>
-                        <tr>
-                            <td>Garlic, ginger, lettuce, peppers</td>
-                            <td>Various</td>
-                            <td>R40</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="9"><strong>Pantry</strong><br>R200</td>
-                            <td>Cooking oil</td>
-                            <td>2L</td>
-                            <td>R60</td>
-                        </tr>
-                        <tr>
-                            <td>Spices (curry, peri-peri, paprika, cinnamon)</td>
-                            <td>Set</td>
-                            <td>R80</td>
-                        </tr>
-                        <tr>
-                            <td>Soy sauce</td>
-                            <td>500ml</td>
-                            <td>R25</td>
-                        </tr>
-                        <tr>
-                            <td>Tomato paste</td>
-                            <td>Various</td>
-                            <td>R20</td>
-                        </tr>
-                        <tr>
-                            <td>Stock cubes</td>
-                            <td>Box</td>
-                            <td>R15</td>
-                        </tr>
-                        <tr>
-                            <td>Flour</td>
-                            <td>2.5kg</td>
-                            <td>R40</td>
-                        </tr>
-                        <tr>
-                            <td>Jam/Honey</td>
-                            <td>Various</td>
-                            <td>R50</td>
-                        </tr>
-                        <tr>
-                            <td>Salt, pepper</td>
-                            <td>Set</td>
-                            <td>R10</td>
-                        </tr>
-                        <tr>
-                            <td>Pilchards (tinned)</td>
-                            <td>3 tins</td>
-                            <td>R40</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2"><strong>Snacks</strong><br>R50</td>
-                            <td>Biscuits</td>
-                            <td>Pack</td>
-                            <td>R25</td>
-                        </tr>
-                        <tr>
-                            <td>Juice concentrate</td>
-                            <td>Bottle</td>
-                            <td>R30</td>
-                        </tr>
-                        <tr style="background: var(--black); color: var(--white);">
-                            <td colspan="3"><strong>TOTAL</strong></td>
-                            <td><strong>R1,400</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                <div id="nutritionMarkdown" class="markdown-content"></div>
                 <h2>4-Week Meal Rotation</h2>
                 <div class="week-selector">
                     <button class="week-btn active" onclick="showMealWeek(1)">Week 1</button>
@@ -3136,21 +2037,7 @@
                     <button class="week-btn" onclick="showMealWeek(3)">Week 3</button>
                     <button class="week-btn" onclick="showMealWeek(4)">Week 4</button>
                 </div>
-
                 <div id="mealWeekDetails"></div>
-
-                <div class="card" style="margin-top: var(--spacing-xl);">
-                    <div class="card-title">Meal Prep Strategy</div>
-                    <ul style="margin: 0;">
-                        <li>Cook in bulk on Sunday: 2kg chicken, large pot of rice</li>
-                        <li>Use 7-10 meal prep containers for the week</li>
-                        <li>Prep 3 days of lunches at once</li>
-                        <li>Freeze extras for busy exam weeks</li>
-                        <li>Rotate through 4-week cycle to avoid boredom</li>
-                        <li>Buy seasonal specials to save money</li>
-                        <li>Always have emergency meals (eggs, rice, pilchards)</li>
-                    </ul>
-                </div>
             </section>
 
             <!-- Progress Tracker Section -->
@@ -4483,7 +3370,7 @@
         const SOWETO_RACE = new Date('2026-11-29');
         
         // RACE DATES
-        const RACES = [
+        let RACES = [
             { name: 'Tshwane 10K', date: new Date('2026-08-23'), distance: '10K' },
             { name: 'Brooklyn 10K', date: new Date('2026-09-05'), distance: '10K' },
             { name: 'Tuks 5K', date: new Date('2026-09-16'), distance: '5K' },
@@ -7963,5 +6850,290 @@ function groceryBudgetInit() {
 }
 
 document.addEventListener('DOMContentLoaded', groceryBudgetInit);
+
+const PLAN_MARKDOWN_FILES = {
+    profile: '01_Profile_and_Goals 2.md',
+    phase1: '02_Phase1_Foundation.md',
+    phase2: '03_Phase2_Speed.md',
+    phase3: '04_Phase3_Peak_and_Taper.md',
+    nutrition: '05_Nutrition.md'
+};
+
+let raceCalendarData = {};
+let mealRotationSections = {};
+const raceProtocolTemplates = typeof getRaceProtocols === 'function' ? getRaceProtocols() : null;
+if (raceProtocolTemplates) {
+    window.__raceProtocolTemplates = raceProtocolTemplates;
+}
+
+function normalizeRaceKey(name) {
+    return String(name || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+}
+
+function renderMarkdownInto(containerId, markdown) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = marked.parse(markdown || '');
+}
+
+function extractSectionMarkdown(markdown, headingPattern) {
+    return findHeadingSection(markdown || '', headingPattern);
+}
+
+function extractIntroMarkdown(markdown) {
+    const parts = String(markdown || '').split(/^---\\s*$/m);
+    return (parts[0] || '').trim();
+}
+
+function stripSectionMarkdown(markdown, headingPattern) {
+    const section = extractSectionMarkdown(markdown, headingPattern);
+    if (!section) return markdown;
+    return String(markdown || '').replace(section, '').replace(/\\n{3,}/g, '\\n\\n').trim();
+}
+
+function extractRestartDate(markdown) {
+    const match = String(markdown || '').match(/Restart Date:\\s*(.+)/i);
+    return match ? match[1].trim() : '';
+}
+
+function parseMarkdownTable(markdown) {
+    const lines = String(markdown || '').split('\\n').filter(line => line.trim().startsWith('|'));
+    if (lines.length < 2) return [];
+    const rows = lines.slice(2);
+    return rows.map(line => {
+        const cells = line.split('|').map(cell => cell.trim()).filter(Boolean);
+        if (cells.length < 4) return null;
+        return { date: cells[0], race: cells[1], goal: cells[2], purpose: cells[3] };
+    }).filter(Boolean);
+}
+
+function parseRaceCalendar(markdown) {
+    const rows = parseMarkdownTable(markdown);
+    const map = {};
+    rows.forEach(row => {
+        map[normalizeRaceKey(row.race)] = row;
+    });
+    return { rows, map };
+}
+
+function extractDistanceFromRace(name) {
+    const match = String(name || '').match(/(\\d+(?:\\.\\d+)?)\\s*(k|km)/i);
+    if (!match) return '';
+    return `${match[1]}K`;
+}
+
+function updateRaceCalendarData(markdown) {
+    const parsed = parseRaceCalendar(markdown);
+    raceCalendarData = parsed.map;
+    if (parsed.rows.length) {
+        RACES = parsed.rows.map(row => ({
+            name: row.race,
+            date: new Date(row.date),
+            distance: extractDistanceFromRace(row.race) || row.goal
+        })).filter(item => item.date.toString() !== 'Invalid Date');
+    }
+}
+
+function getRaceMetaByKey(key) {
+    return raceCalendarData[normalizeRaceKey(key)] || null;
+}
+
+function parseMealRotationSections(markdown) {
+    const sections = {};
+    const lines = String(markdown || '').split('\\n');
+    let currentWeek = null;
+    let buffer = [];
+    const weekHeading = /^###?\\s+\\*\\*?WEEK\\s+(\\d+)/i;
+    lines.forEach(line => {
+        const match = line.match(weekHeading);
+        if (match) {
+            if (currentWeek) {
+                sections[currentWeek] = buffer.join('\\n').trim();
+            }
+            currentWeek = match[1];
+            buffer = [line];
+            return;
+        }
+        if (currentWeek) {
+            buffer.push(line);
+        }
+    });
+    if (currentWeek) {
+        sections[currentWeek] = buffer.join('\\n').trim();
+    }
+    return sections;
+}
+
+async function initializeMarkdownContent() {
+    try {
+        const profileMarkdown = await fetchMarkdownCached(PLAN_MARKDOWN_FILES.profile);
+        const intro = extractIntroMarkdown(profileMarkdown);
+        const raceCalendar = extractSectionMarkdown(profileMarkdown, /The Race Calendar/i);
+        const phaseOverview = extractSectionMarkdown(profileMarkdown, /Phase Overview/i);
+        const nonNegotiable = extractSectionMarkdown(profileMarkdown, /The Non-Negotiable/i);
+        const contract = extractSectionMarkdown(profileMarkdown, /The Contract/i);
+        const currentStats = extractSectionMarkdown(profileMarkdown, /Current Stats/i);
+        const accountability = extractSectionMarkdown(profileMarkdown, /The Accountability Structure/i);
+        const weeklySchedule = extractSectionMarkdown(profileMarkdown, /Weekly Schedule/i);
+        const equipment = extractSectionMarkdown(profileMarkdown, /Equipment/i);
+        const goalsAchievable = extractSectionMarkdown(profileMarkdown, /Why These Goals Are Achievable/i);
+
+        const overviewMarkdown = [intro, raceCalendar, phaseOverview, nonNegotiable].filter(Boolean).join('\\n\\n');
+        renderMarkdownInto('overviewMarkdown', overviewMarkdown);
+
+        const profileMarkdownOut = [currentStats, accountability, weeklySchedule, equipment, contract].filter(Boolean).join('\\n\\n');
+        renderMarkdownInto('profileMarkdown', profileMarkdownOut);
+
+        const restartDate = extractRestartDate(profileMarkdown);
+        const phase0Note = restartDate
+            ? `Phase 0 is no longer part of the reset. Start Phase 1 on **${restartDate}** and follow the 4-day schedule in the profile section.`
+            : 'Phase 0 is no longer part of the reset. Start directly with Phase 1 on May 4, 2026.';
+        renderMarkdownInto('phase0Markdown', phase0Note);
+
+        const racesMarkdown = [raceCalendar, goalsAchievable].filter(Boolean).join('\\n\\n');
+        renderMarkdownInto('racesMarkdown', racesMarkdown);
+        updateRaceCalendarData(raceCalendar);
+    } catch (error) {
+        console.warn('Could not load profile markdown', error);
+    }
+
+    try {
+        const nutritionMarkdown = await fetchMarkdownCached(PLAN_MARKDOWN_FILES.nutrition);
+        const mealRotationSection = extractSectionMarkdown(nutritionMarkdown, /4-Week Meal Rotation/i);
+        mealRotationSections = parseMealRotationSections(mealRotationSection);
+        const nutritionBody = stripSectionMarkdown(nutritionMarkdown, /4-Week Meal Rotation/i);
+        renderMarkdownInto('nutritionMarkdown', nutritionBody);
+        if (Object.keys(mealRotationSections).length) {
+            showMealWeek(1);
+        }
+    } catch (error) {
+        console.warn('Could not load nutrition markdown', error);
+    }
+}
+
+async function renderPhaseWeekMarkdown(phaseFile, weekNum, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    try {
+        const markdown = await fetchMarkdownCached(phaseFile);
+        const weeklyStructure = extractSectionMarkdown(markdown, /WEEKLY STRUCTURE/i) || markdown;
+        const title = weekTitleForPhase(phaseFile, weekNum);
+        container.innerHTML = `<h2>${title}</h2>${marked.parse(weeklyStructure)}`;
+    } catch (error) {
+        container.innerHTML = '<div class=\"info-box\">Could not load workout plan.</div>';
+    }
+}
+
+async function loadMarkdownWeekInto(containerId, phaseFile, weekNum, includeTodayHeader) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    try {
+        const markdown = await fetchMarkdownCached(phaseFile);
+        const weeklyStructure = extractSectionMarkdown(markdown, /WEEKLY STRUCTURE/i) || markdown;
+        const title = weekTitleForPhase(phaseFile, weekNum);
+        const todayName = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+        const header = includeTodayHeader
+            ? `<div class=\"info-box\"><div class=\"info-box-title\">Today: ${todayName}</div><p style=\"margin:0;\">Showing the weekly structure from the markdown plan.</p></div>`
+            : '';
+        container.innerHTML = `${header}<h2>${title}</h2>${marked.parse(weeklyStructure)}`;
+    } catch (error) {
+        container.innerHTML = '<div class=\"info-box\">Could not load workout plan.</div>';
+    }
+}
+
+function showWeekDetails(weekNum) {
+    currentPhaseFile = PLAN_MARKDOWN_FILES.phase1;
+    currentWeekNum = weekNum;
+    setActiveWeekButton('#phase1', weekNum);
+    renderPhaseWeekMarkdown(PLAN_MARKDOWN_FILES.phase1, weekNum, 'weekDetailsContainer');
+}
+
+function showPhase2Week(weekNum) {
+    currentPhaseFile = PLAN_MARKDOWN_FILES.phase2;
+    currentWeekNum = weekNum;
+    setActiveWeekButton('#phase2', weekNum);
+    renderPhaseWeekMarkdown(PLAN_MARKDOWN_FILES.phase2, weekNum, 'phase2WeekDetails');
+}
+
+function showPhase3Week(weekNum) {
+    currentPhaseFile = PLAN_MARKDOWN_FILES.phase3;
+    currentWeekNum = weekNum;
+    setActiveWeekButton('#phase3', weekNum);
+    renderPhaseWeekMarkdown(PLAN_MARKDOWN_FILES.phase3, weekNum, 'phase3WeekDetails');
+}
+
+function showMealWeek(week) {
+    const container = document.getElementById('mealWeekDetails');
+    if (!container) return;
+    const markdown = mealRotationSections[String(week)] || '';
+    container.innerHTML = markdown ? marked.parse(markdown) : '<div class=\"info-box\">Meal plan not available yet.</div>';
+    setActiveWeekButton('#nutrition', week);
+}
+
+function getRaceProtocols() {
+    const race1Meta = getRaceMetaByKey('tshwane') || getRaceMetaByKey('tshwane10k');
+    const race2Meta = getRaceMetaByKey('brooklyn');
+    const race3Meta = getRaceMetaByKey('tuks') || getRaceMetaByKey('sappi');
+    const race4Meta = getRaceMetaByKey('ford');
+    const race5Meta = getRaceMetaByKey('soweto');
+
+    const protocols = {
+        1: {
+            name: `Race 1: ${race1Meta?.race || 'Absa Tshwane 10K'}`,
+            date: race1Meta?.date || 'Sunday, August 23, 2026',
+            distance: '10km',
+            goal: race1Meta?.goal || 'Sub-60 minutes (6:00/km average)',
+            purpose: race1Meta?.purpose || 'First race ever - learn the experience'
+        },
+        2: {
+            name: `Race 2: ${race2Meta?.race || 'Brooklyn 10K'}`,
+            date: race2Meta?.date || 'Saturday, September 5, 2026',
+            distance: '10km',
+            goal: race2Meta?.goal || 'Sub-55 minutes (5:30/km average)',
+            purpose: race2Meta?.purpose || 'Improvement race'
+        },
+        3: {
+            name: `Race 3: ${race3Meta?.race || 'Sappi Tuks Night Race 5K'}`,
+            date: race3Meta?.date || 'Wednesday, September 16, 2026',
+            distance: '5km',
+            goal: race3Meta?.goal || 'Sub-25 minutes (5:00/km average)',
+            purpose: race3Meta?.purpose || 'Speed test'
+        },
+        4: {
+            name: `Race 4: ${race4Meta?.race || 'Ford 3-in-1 Half Marathon'}`,
+            date: race4Meta?.date || 'Saturday, September 26, 2026',
+            distance: '21.1km',
+            goal: race4Meta?.goal || 'Sub-2:05 (5:55/km average)',
+            purpose: race4Meta?.purpose || 'Dress rehearsal'
+        },
+        5: {
+            name: `Race 5: ${race5Meta?.race || 'Soweto Marathon 21.1km'}`,
+            date: race5Meta?.date || 'Sunday, November 29, 2026',
+            distance: '21.1km',
+            goal: race5Meta?.goal || 'Sub-2:00 (5:41/km average)',
+            purpose: race5Meta?.purpose || 'Goal race'
+        }
+    };
+
+    const existing = window.__raceProtocolTemplates;
+    if (existing) {
+        return {
+            1: { ...existing[1], ...protocols[1] },
+            2: { ...existing[2], ...protocols[2] },
+            3: { ...existing[3], ...protocols[3] },
+            4: { ...existing[4], ...protocols[4] },
+            5: { ...existing[5], ...protocols[5] }
+        };
+    }
+
+    return protocols;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initializeMarkdownContent();
+    showWeekDetails(1);
+    showPhase2Week(13);
+    showPhase3Week(22);
+});
 </script>
 </html>
