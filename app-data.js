@@ -80,10 +80,8 @@ window.ProjectPhoenixData = {
         }
     },
     phaseConfig: {
-        '03_Phase1_Foundation.md': { minWeek: 1, maxWeek: 12 },
-        '04_Phase2_Speed.md': { minWeek: 13, maxWeek: 20 },
-        '05_Phase3_Build.md': { minWeek: 21, maxWeek: 36 },
-        '06_Phase4_Peak.md': { minWeek: 37, maxWeek: 41 },
-        '07_Phase5_Taper_and_RaceDay.md': { minWeek: 42, maxWeek: 44 }
+        '02_Phase1_Foundation.md': { minWeek: 1, maxWeek: 12 },
+        '03_Phase2_Speed.md': { minWeek: 13, maxWeek: 21 },
+        '04_Phase3_Peak_and_Taper.md': { minWeek: 22, maxWeek: 30 }
     }
 };

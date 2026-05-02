@@ -129,7 +129,7 @@
             event.target.classList.add('active');
 
             // Fetch and parse markdown for Phase 1
-            fetch('03_Phase1_Foundation.md')
+            fetch('02_Phase1_Foundation.md')
                 .then(res => res.text())
                 .then(md => {
                     // Use the same parser as in loadTodaysWorkout

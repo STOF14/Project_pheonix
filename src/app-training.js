@@ -4,7 +4,7 @@ const markdownCache = new Map();
 const weekSectionCache = new Map();
 const completionStorageKey = 'weekCompletionV1';
 
-let currentPhaseFile = '03_Phase1_Foundation.md';
+let currentPhaseFile = '02_Phase1_Foundation.md';
 let currentWeekNum = 1;
 
 function getCompletionMap() {
@@ -600,7 +600,7 @@ function renderWeekCards(dayBlocks, options) {
 }
 
 function extractWeekSection(md, phaseFile, weekNum) {
-    if (phaseFile === '03_Phase1_Foundation.md') {
+    if (phaseFile === '02_Phase1_Foundation.md') {
         if (weekNum >= 1 && weekNum <= 4) {
             return extractBetweenHeadings(
                 md,
@@ -632,7 +632,7 @@ function extractWeekSection(md, phaseFile, weekNum) {
         return '';
     }
 
-    if (phaseFile === '04_Phase2_Speed.md') {
+    if (phaseFile === '03_Phase2_Speed.md') {
         if (weekNum === 13) return findHeadingSection(md, /Week 13: RECOVERY WEEK/i);
         if (weekNum >= 16 && weekNum <= 18) return findHeadingSection(md, /CRITICAL: EXAM PERIOD/i);
         if (weekNum >= 14 && weekNum <= 15) {
@@ -663,7 +663,7 @@ function extractWeekSection(md, phaseFile, weekNum) {
         return '';
     }
 
-    if (phaseFile === '05_Phase3_Build.md') {
+    if (phaseFile === '04_Phase3_Peak_and_Taper.md') {
         if (weekNum === 32 || weekNum === 35 || weekNum === 36) {
             return combineSections([
                 findHeadingSection(md, /RACE WEEK PROTOCOLS/i),
@@ -683,7 +683,7 @@ function extractWeekSection(md, phaseFile, weekNum) {
         ]);
     }
 
-    if (phaseFile === '06_Phase4_Peak.md') {
+    if (phaseFile === '04_Phase3_Peak_and_Taper.md') {
         if (weekNum === 38) return findHeadingSection(md, /WEEK 38: FORD 3-IN-1 HALF MARATHON/i);
         if (weekNum === 39) return findHeadingSection(md, /WEEK 39: POST-FORD RECOVERY WEEK/i);
         return combineSections([
@@ -698,7 +698,7 @@ function extractWeekSection(md, phaseFile, weekNum) {
         ]);
     }
 
-    if (phaseFile === '07_Phase5_Taper_and_RaceDay.md') {
+    if (phaseFile === '04_Phase3_Peak_and_Taper.md') {
         if (weekNum === 42) return findHeadingSection(md, /WEEK 42: FIRST TAPER WEEK/i);
         if (weekNum === 43) return findHeadingSection(md, /WEEK 43: SECOND TAPER WEEK/i);
         if (weekNum === 44) return combineSections([
@@ -743,7 +743,7 @@ async function loadMarkdownWeekInto(containerId, phaseFile, weekNum, includeToda
 
         const todayName = new Date().toLocaleDateString('en-US', { weekday: 'long' });
         let dayBlocks = parseDayBlocks(weekSection);
-        if (!dayBlocks.length && phaseFile === '03_Phase1_Foundation.md') {
+        if (!dayBlocks.length && phaseFile === '02_Phase1_Foundation.md') {
             dayBlocks = synthesizePhase1Days(weekSection, weekNum);
         }
         dayBlocks = applyTrainingStateAdjustments(dayBlocks, getTrainingState());
@@ -818,42 +818,42 @@ function showTodaysWorkout() {
 }
 
 function showWeekDetails(weekNum) {
-    currentPhaseFile = '03_Phase1_Foundation.md';
+    currentPhaseFile = '02_Phase1_Foundation.md';
     currentWeekNum = weekNum;
     setActiveWeekButton('#phase1', weekNum);
     const bridge = document.getElementById('phase1CatchupBridge');
     if (bridge) {
         bridge.style.display = (weekNum >= 4 && weekNum <= 7) ? 'block' : 'none';
     }
-    loadMarkdownWeekInto('weekDetailsContainer', '03_Phase1_Foundation.md', weekNum, false);
+    loadMarkdownWeekInto('weekDetailsContainer', '02_Phase1_Foundation.md', weekNum, false);
 }
 
 function showPhase2Week(weekNum) {
-    currentPhaseFile = '04_Phase2_Speed.md';
+    currentPhaseFile = '03_Phase2_Speed.md';
     currentWeekNum = weekNum;
     setActiveWeekButton('#phase2', weekNum);
-    loadMarkdownWeekInto('phase2WeekDetails', '04_Phase2_Speed.md', weekNum, false);
+    loadMarkdownWeekInto('phase2WeekDetails', '03_Phase2_Speed.md', weekNum, false);
 }
 
 function showPhase3Week(weekNum) {
-    currentPhaseFile = '05_Phase3_Build.md';
+    currentPhaseFile = '04_Phase3_Peak_and_Taper.md';
     currentWeekNum = weekNum;
     setActiveWeekButton('#phase3', weekNum);
-    loadMarkdownWeekInto('phase3WeekDetails', '05_Phase3_Build.md', weekNum, false);
+    loadMarkdownWeekInto('phase3WeekDetails', '04_Phase3_Peak_and_Taper.md', weekNum, false);
 }
 
 function showPhase4Week(weekNum) {
-    currentPhaseFile = '06_Phase4_Peak.md';
+    currentPhaseFile = '04_Phase3_Peak_and_Taper.md';
     currentWeekNum = weekNum;
     setActiveWeekButton('#phase4', weekNum);
-    loadMarkdownWeekInto('phase4WeekDetails', '06_Phase4_Peak.md', weekNum, false);
+    loadMarkdownWeekInto('phase4WeekDetails', '04_Phase3_Peak_and_Taper.md', weekNum, false);
 }
 
 function showPhase5Week(weekNum) {
-    currentPhaseFile = '07_Phase5_Taper_and_RaceDay.md';
+    currentPhaseFile = '04_Phase3_Peak_and_Taper.md';
     currentWeekNum = weekNum;
     setActiveWeekButton('#phase5', weekNum);
-    loadMarkdownWeekInto('phase5WeekDetails', '07_Phase5_Taper_and_RaceDay.md', weekNum, false);
+    loadMarkdownWeekInto('phase5WeekDetails', '04_Phase3_Peak_and_Taper.md', weekNum, false);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -889,14 +889,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial sync of per-phase week sections.
     showWeekDetails(1);
     showPhase2Week(13);
-    showPhase3Week(21);
-    showPhase4Week(37);
-    showPhase5Week(42);
+    showPhase3Week(22);
 
     attachSwipeNavigation('weekDetailsContainer', 1, 12, showWeekDetails, function() { return getActiveWeekFromSection('#phase1', 1); });
-    attachSwipeNavigation('phase2WeekDetails', 13, 20, showPhase2Week, function() { return getActiveWeekFromSection('#phase2', 13); });
-    attachSwipeNavigation('phase3WeekDetails', 21, 36, showPhase3Week, function() { return getActiveWeekFromSection('#phase3', 21); });
-    attachSwipeNavigation('phase4WeekDetails', 37, 41, showPhase4Week, function() { return getActiveWeekFromSection('#phase4', 37); });
-    attachSwipeNavigation('phase5WeekDetails', 42, 44, showPhase5Week, function() { return getActiveWeekFromSection('#phase5', 42); });
+    attachSwipeNavigation('phase2WeekDetails', 13, 21, showPhase2Week, function() { return getActiveWeekFromSection('#phase2', 13); });
+    attachSwipeNavigation('phase3WeekDetails', 22, 30, showPhase3Week, function() { return getActiveWeekFromSection('#phase3', 22); });
 });
 
