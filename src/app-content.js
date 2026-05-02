@@ -45,24 +45,81 @@
             closeSidebar();
         }
 
-        // Sidebar toggle (mobile)
+        // Sidebar toggle (mobile) with accessibility improvements
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.querySelector('.overlay');
-            sidebar.classList.toggle('open');
+            const menuToggle = document.getElementById('menuToggle');
+            if (!sidebar || !overlay) return;
+
+            const isOpen = sidebar.classList.toggle('open');
             overlay.classList.toggle('active');
+
+            // ARIA and focus management
+            if (menuToggle) menuToggle.setAttribute('aria-expanded', String(isOpen));
+            sidebar.setAttribute('aria-hidden', String(!isOpen));
+            if (isOpen) {
+                // focus the sidebar container for keyboard users
+                sidebar.focus();
+            } else if (menuToggle) {
+                menuToggle.focus();
+            }
         }
 
         function closeSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.querySelector('.overlay');
+            const menuToggle = document.getElementById('menuToggle');
+            if (!sidebar || !overlay) return;
+
             sidebar.classList.remove('open');
             overlay.classList.remove('active');
+            sidebar.setAttribute('aria-hidden', 'true');
+            if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+            if (menuToggle) menuToggle.focus();
         }
 
-        // Checkbox toggle
+        // Checklist persistence helpers
+        function getChecklistStorageKey() {
+            return 'checklistStatesV1';
+        }
+
+        function loadChecklistStates() {
+            const map = window.ProjectPhoenixUtils.getStoredJson(getChecklistStorageKey(), {});
+            document.querySelectorAll('.checkbox').forEach(el => {
+                let id = el.getAttribute('data-check-id');
+                if (!id) {
+                    id = generateCheckId(el);
+                    el.setAttribute('data-check-id', id);
+                }
+                if (map[id]) el.classList.add('checked');
+                else el.classList.remove('checked');
+            });
+        }
+
+        function saveChecklistState(id, checked) {
+            const key = getChecklistStorageKey();
+            const map = window.ProjectPhoenixUtils.getStoredJson(key, {});
+            if (checked) map[id] = true;
+            else delete map[id];
+            window.ProjectPhoenixUtils.setStoredJson(key, map);
+        }
+
+        function generateCheckId(el) {
+            const text = (el.nextElementSibling ? el.nextElementSibling.textContent : el.textContent || '').trim().slice(0, 80);
+            return 'chk_' + btoa(unescape(encodeURIComponent(text))).replace(/=+$/,'');
+        }
+
+        // Checkbox toggle with persistence
         function toggleCheck(checkbox) {
+            if (!checkbox) return;
             checkbox.classList.toggle('checked');
+            let id = checkbox.getAttribute('data-check-id');
+            if (!id) {
+                id = generateCheckId(checkbox);
+                checkbox.setAttribute('data-check-id', id);
+            }
+            saveChecklistState(id, checkbox.classList.contains('checked'));
         }
 
         // Search functionality
@@ -118,41 +175,7 @@
             }
         });
 
-        // Week details function for Phase 1
-        function showWeekDetails(weekNum) {
-
-            const container = document.getElementById('weekDetailsContainer');
-            if (!container) return;
-
-            // Update active button
-            document.querySelectorAll('.week-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // Fetch and parse markdown for Phase 1
-            fetch('02_Phase1_Foundation.md')
-                .then(res => res.text())
-                .then(md => {
-                    // Use the same parser as in loadTodaysWorkout
-                    const weekData = parsePhase1Markdown(md, weekNum);
-                    if (!weekData) {
-                        container.innerHTML = `<div class="info-box">No plan found for this week.</div>`;
-                        return;
-                    }
-                    let html = `<h2>Week ${weekNum} Detailed Schedule</h2><div class="week-schedule">`;
-                    weekData.forEach(dayObj => {
-                        html += `<div class="day-card">
-                            <div class="day-header"><span>${dayObj.day.toUpperCase()}</span></div>
-                            <div class="day-detail">${marked.parse(dayObj.text)}</div>
-                        </div>`;
-                    });
-                    html += '</div>';
-                    container.innerHTML = html;
-                    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                })
-                .catch(() => {
-                    container.innerHTML = `<div class="info-box">Could not load workout plan.</div>`;
-                });
-        }
+        
 
         // Phase 2 Week Details
         function showPhase2Week(weekNum) {

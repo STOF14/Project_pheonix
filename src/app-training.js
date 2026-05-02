@@ -869,6 +869,8 @@ document.addEventListener('DOMContentLoaded', function() {
             updateTodayWeekOptions();
             loadTodaysWorkout();
         });
+    }
+    if (weekSelect) {
         weekSelect.addEventListener('change', loadTodaysWorkout);
     }
     if (loadBtn) {

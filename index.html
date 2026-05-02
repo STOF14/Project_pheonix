@@ -1435,7 +1435,7 @@
                 </div>
             </div>
             </div>
-            <button class="menu-toggle" onclick="toggleSidebar()">MENU</button>
+            <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="sidebar" onclick="toggleSidebar()">MENU</button>
         </div>
     </header>
 
@@ -1445,7 +1445,7 @@
     <!-- Main Container -->
     <div class="container">
         <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
+        <aside class="sidebar" id="sidebar" role="navigation" aria-hidden="true" tabindex="-1">
             <div class="sidebar-section">
                 <div class="sidebar-title">Navigation</div>
                 <nav>
